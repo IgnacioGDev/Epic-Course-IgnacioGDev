@@ -7,8 +7,11 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent _navMeshAgent;
+
     [SerializeField]
     private Transform _destination;
+    [SerializeField]
+    private float _health;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,10 @@ public class EnemyAI : MonoBehaviour
 
     void EnemyDestination(Vector3 endPoint)
     {
-        _navMeshAgent.SetDestination(endPoint);
+        if (_navMeshAgent != null)
+        {
+            _navMeshAgent.SetDestination(endPoint);
+        }       
     }
 
     private void OnTriggerEnter(Collider other)
