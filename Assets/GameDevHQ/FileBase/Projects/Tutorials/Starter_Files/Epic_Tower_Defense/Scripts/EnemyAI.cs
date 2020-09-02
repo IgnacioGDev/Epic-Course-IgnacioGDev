@@ -2,44 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Scripts.Managers;
 
-public class EnemyAI : MonoBehaviour
+namespace Scripts
 {
-    [SerializeField]
-    private NavMeshAgent _navMeshAgent;
-
-    [SerializeField]
-    private Transform _destination;
-    [SerializeField]
-    private float _health;
-
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyAI : MonoBehaviour
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _destination = GameObject.Find("EndPoint").GetComponent<Transform>();
-    }
+        [SerializeField]
+        private NavMeshAgent _navMeshAgent;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(_destination.transform.position);
-        EnemyDestination(_destination.transform.position);
-    }
+        [SerializeField]
+        private Transform _destination;
+        [SerializeField]
+        private float _health;
 
-    void EnemyDestination(Vector3 endPoint)
-    {
-        if (_navMeshAgent != null)
+        //Game Manager holds the reference for the endpoint
+        //This class will request the gameManager reference 
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            _navMeshAgent.SetDestination(endPoint);
-        }       
-    }
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _destination = GameObject.Find("EndPoint").GetComponent<Transform>();
+            EnemyDestination(_destination.transform.position);
+            
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Endpoint"))
+        // Update is called once per frame
+
+        void EnemyDestination(Vector3 endPoint)
         {
-            Destroy(gameObject);
+            if (_navMeshAgent != null)
+            {
+                _navMeshAgent.SetDestination(endPoint);
+            }
         }
     }
 }
+
