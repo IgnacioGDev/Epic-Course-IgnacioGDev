@@ -3965,6 +3965,10 @@ MonoBehaviour:
   _prefabEnemy: {fileID: 1637921026644932, guid: b6f9eb08e9dcb484fbccc49d65f561ab,
     type: 3}
   _startingPoint: {fileID: 1186278650}
+  _initialWave: 10
+  _actualWave: 0
+  _waveMultiplier: 1
+  _enemyCounter: 0
 --- !u!1 &856192378
 GameObject:
   m_ObjectHideFlags: 0
@@ -9067,6 +9071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endZoneTrigger: {fileID: 757453979}
+  _moneyCounter: 0
 --- !u!4 &1708022563
 Transform:
   m_ObjectHideFlags: 0

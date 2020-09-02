@@ -25,7 +25,11 @@ namespace Scripts.Managers
         }
 
         public Transform _endZoneTrigger;
+        public float _moneyCounter;
+        
 
+
+        //Singleton instantiation
         private void Awake()
         {
             _instance = this;

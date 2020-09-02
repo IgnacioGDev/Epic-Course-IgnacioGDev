@@ -14,10 +14,15 @@ namespace Scripts
         [SerializeField]
         private Transform _destination;
         [SerializeField]
-        private float _health;
+        private float _hitPoints;
+        [SerializeField]
+        private float _moneyLoot;
 
-        //Game Manager holds the reference for the endpoint
-        //This class will request the gameManager reference 
+
+
+
+        //Game Manager holds the reference for the endpoint -- DONE
+        //This class will request the gameManager reference -- DONE
 
 
         // Start is called before the first frame update
@@ -37,6 +42,11 @@ namespace Scripts
             {
                 _navMeshAgent.SetDestination(endPoint);
             }
+        }
+
+        private void OnDestroy()
+        {
+            SpawnManager.Instance._enemyCounter--;
         }
     }
 }
