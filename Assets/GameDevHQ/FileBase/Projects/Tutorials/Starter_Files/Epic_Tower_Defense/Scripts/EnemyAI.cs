@@ -24,7 +24,7 @@ namespace Scripts
         void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _destination = GameObject.Find("EndPoint").GetComponent<Transform>();
+            _destination = GameManager.Instance._endZoneTrigger;
             EnemyDestination(_destination.transform.position);
             
         }
