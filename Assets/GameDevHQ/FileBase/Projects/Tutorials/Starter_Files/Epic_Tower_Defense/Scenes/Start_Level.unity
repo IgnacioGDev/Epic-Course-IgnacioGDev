@@ -3962,8 +3962,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1750a01847221704487482b234aebeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabEnemy: {fileID: 1637921026644932, guid: b6f9eb08e9dcb484fbccc49d65f561ab,
-    type: 3}
+  _prefabEnemies:
+  - {fileID: 1637921026644932, guid: b6f9eb08e9dcb484fbccc49d65f561ab, type: 3}
+  - {fileID: 1079767520691416, guid: fed6fd85e4a83418485118c22ed9f184, type: 3}
   _startingPoint: {fileID: 1186278650}
   _initialWave: 10
   _actualWave: 0
@@ -10586,7 +10587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 3dac35fc7db3c4796b9a8d62cc0fa4a0, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 3dac35fc7db3c4796b9a8d62cc0fa4a0, type: 3}
       propertyPath: m_Layer

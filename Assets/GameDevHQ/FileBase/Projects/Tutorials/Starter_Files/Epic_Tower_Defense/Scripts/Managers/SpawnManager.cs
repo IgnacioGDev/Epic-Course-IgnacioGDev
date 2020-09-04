@@ -24,7 +24,7 @@ namespace Scripts.Managers
         }
 
         [SerializeField]
-        private GameObject _prefabEnemy;
+        private GameObject[] _prefabEnemies;
         [SerializeField]
         private Transform _startingPoint;
         [SerializeField]
@@ -33,7 +33,9 @@ namespace Scripts.Managers
         private int _actualWave;
         [SerializeField]
         private int _waveMultiplier = 1;
-
+        private int _randomIndexEnemy;
+        private float _randomIndexMin = 0f;
+        private float _randomIndexMax = 1f;
         public int _enemyCounter;
 
         // Singleton instantiation
@@ -52,6 +54,7 @@ namespace Scripts.Managers
 
             _enemyCounter = _initialWave * _waveMultiplier;
             StartCoroutine(EnemySpawner());
+
         }
 
         private void Update()
@@ -66,12 +69,17 @@ namespace Scripts.Managers
                 yield return new WaitForSeconds(5);
                 if (_actualWave < (_initialWave * _waveMultiplier))
                 {
-                    Instantiate(_prefabEnemy, _startingPoint.transform.position, _startingPoint.transform.rotation);
-                    Debug.Log(_actualWave);
+                    Instantiate(_prefabEnemies[RandomIndexGenerator()], _startingPoint.transform.position, _startingPoint.transform.rotation);
+                    Debug.Log(_randomIndexEnemy);
                     _actualWave++;
-                }         
+                }
             }
 
+        }
+
+        private int RandomIndexGenerator()
+        {
+            return _randomIndexEnemy = Mathf.RoundToInt(Random.Range(_randomIndexMin, _randomIndexMax));
         }
 
         void ResetEnemyCounter()
