@@ -69,6 +69,12 @@ namespace Scripts.Managers
                 yield return new WaitForSeconds(5);
                 if (_actualWave < (_initialWave * _waveMultiplier))
                 {
+
+                    //communicate with the object pool system
+                    //Request enemy
+                    //GameObject enemy = PoolManager.Instance.RequestEnemy();
+                    //enemy.transform.position = _startingPoint.transform.position;
+
                     Instantiate(_prefabEnemies[RandomIndexGenerator()], _startingPoint.transform.position, _startingPoint.transform.rotation);
                     Debug.Log(_randomIndexEnemy);
                     _actualWave++;
