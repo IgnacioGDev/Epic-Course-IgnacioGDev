@@ -23,9 +23,9 @@ namespace Scripts.Managers
                 return _instance;
             }
         }
-
-        public Transform _endZoneTrigger;
-        public float _moneyCounter;
+        [SerializeField]
+        private Transform _endZoneTrigger;
+        private float _moneyCounter;
         
 
 
@@ -45,6 +45,11 @@ namespace Scripts.Managers
         void Update()
         {
 
+        }
+
+        public Transform GetEndZone()
+        {
+            return _endZoneTrigger;
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts.Managers
 {
@@ -66,16 +67,20 @@ namespace Scripts.Managers
         {
             while (true)
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(1);
                 if (_actualWave < (_initialWave * _waveMultiplier))
                 {
 
                     //communicate with the object pool system
                     //Request enemy
-                    //GameObject enemy = PoolManager.Instance.RequestEnemy();
+                    GameObject enemy = PoolManager.Instance.RequestEnemy();
+                    enemy.SetActive(true);
                     //enemy.transform.position = _startingPoint.transform.position;
+                    
 
-                    Instantiate(_prefabEnemies[RandomIndexGenerator()], _startingPoint.transform.position, _startingPoint.transform.rotation);
+                    Debug.Log("ENEMY SPAWNED");
+
+                    //Instantiate(_prefabEnemies[RandomIndexGenerator()], _startingPoint.transform.position, _startingPoint.transform.rotation);
                     Debug.Log(_randomIndexEnemy);
                     _actualWave++;
                 }
@@ -96,6 +101,11 @@ namespace Scripts.Managers
                 _waveMultiplier++;
                 _enemyCounter = _waveMultiplier * _initialWave;
             }
+        }
+
+        public Vector3 GetStartPos()
+        {
+            return _startingPoint.transform.position;
         }
     }
 }

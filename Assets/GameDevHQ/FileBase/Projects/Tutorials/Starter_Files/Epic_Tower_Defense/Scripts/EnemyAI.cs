@@ -25,22 +25,40 @@ namespace Scripts
 
 
         // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-            _destination = GameManager.Instance._endZoneTrigger;
-            EnemyDestination(_destination.transform.position);
-            
+            if (_navMeshAgent != null)
+            {
+                //_navMeshAgent.enabled = true;
+                _navMeshAgent.Warp(SpawnManager.Instance.GetStartPos());
+                _destination = GameManager.Instance.GetEndZone();
+                EnemyDestination(_destination.transform.position);
+            }
+            else
+            {
+                _navMeshAgent = GetComponent<NavMeshAgent>();
+            }
+        }
+
+        private void OnDisable()
+        {
+            //_navMeshAgent.enabled = false;
         }
 
         // Update is called once per frame
 
         void EnemyDestination(Vector3 endPoint)
         {
+
             if (_navMeshAgent != null)
             {
-                _navMeshAgent.SetDestination(endPoint);
+                Move();
             }
+        }
+
+        void Move()
+        {
+            _navMeshAgent.SetDestination(_destination.transform.position);
         }
 
         private void OnDestroy()

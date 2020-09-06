@@ -7,7 +7,7 @@ public class PoolManager : MonoBehaviour
     private static PoolManager _instance;
     public static PoolManager Instance
     {
-        get 
+        get
         {
             if (_instance == null)
             {
@@ -38,6 +38,7 @@ public class PoolManager : MonoBehaviour
     {
         for (int i = 0; i < amountOfEnemies; i++)
         {
+            //GameObject enemy = Instantiate(_enemyPrefab);
             GameObject enemy = Instantiate(_enemyPrefab);
             //setting the enemy prefab parent in hierarchy
             enemy.transform.parent = _enemyContainer.transform;
@@ -48,9 +49,10 @@ public class PoolManager : MonoBehaviour
     }
 
     public GameObject RequestEnemy()
-    {   
-        //loop through the bullet list
-         foreach (var enemy in _enemyPool)
+    {
+        /*loop through the enemy list and will return the first enemy
+        that is not active in hierarchy (activating it in the process) */
+        foreach (var enemy in _enemyPool)
         {
             if (enemy.activeInHierarchy == false)
             {
@@ -61,6 +63,8 @@ public class PoolManager : MonoBehaviour
             }
         }
 
+        /*if inactive enemies were not found in the hierarchy (through the
+          for loop above), then new ones are going to be instantiated */
         GameObject newEnemy = Instantiate(_enemyPrefab);
         newEnemy.transform.parent = _enemyContainer.transform;
         _enemyPool.Add(newEnemy);
