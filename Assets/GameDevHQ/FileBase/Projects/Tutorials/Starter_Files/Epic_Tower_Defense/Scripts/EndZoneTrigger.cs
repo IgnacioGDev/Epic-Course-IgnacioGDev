@@ -10,17 +10,8 @@ namespace Scripts
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("ENEMY DESTROYED");
-            Destroy(other.gameObject);
-        }
-
-        private void OnMouseEnter()
-        {
-            Debug.Log("MOUSE ENTERED");
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            Debug.Log("ENEMY COLLIDED");
+            other.gameObject.SetActive(false);
+            SpawnManager.Instance._enemyCounter--;
         }
     }
 

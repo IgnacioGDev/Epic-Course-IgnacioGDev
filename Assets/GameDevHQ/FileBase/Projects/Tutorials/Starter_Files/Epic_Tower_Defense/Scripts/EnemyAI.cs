@@ -64,7 +64,7 @@ namespace Scripts
 
         private void OnDestroy()
         {
-            SpawnManager.Instance._enemyCounter--;
+            //SpawnManager.Instance._enemyCounter--;
         }
 
         public Vector3 SetDestination()

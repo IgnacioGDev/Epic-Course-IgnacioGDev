@@ -5540,7 +5540,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229042312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10206,7 +10206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3dac35fc7db3c4796b9a8d62cc0fa4a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.92
+      value: 15.91
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3dac35fc7db3c4796b9a8d62cc0fa4a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10293,10 +10293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b47ba054d9a91c41bae11da2c5922b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1079767520691416, guid: fed6fd85e4a83418485118c22ed9f184,
-    type: 3}
+  _enemyPrefabs:
+  - {fileID: 1637921026644932, guid: b6f9eb08e9dcb484fbccc49d65f561ab, type: 3}
+  - {fileID: 1079767520691416, guid: fed6fd85e4a83418485118c22ed9f184, type: 3}
   _enemyPool: []
   _enemyContainer: {fileID: 733740282}
+  _randomIndex: 0
 --- !u!4 &2062201742
 Transform:
   m_ObjectHideFlags: 0
