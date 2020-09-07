@@ -12,7 +12,7 @@ namespace Scripts
         private NavMeshAgent _navMeshAgent;
 
         [SerializeField]
-        private Transform _destination;
+        public Transform _destination;
         [SerializeField]
         private float _hitPoints;
         [SerializeField]
@@ -37,6 +37,7 @@ namespace Scripts
             else
             {
                 _navMeshAgent = GetComponent<NavMeshAgent>();
+
             }
         }
 
@@ -47,7 +48,7 @@ namespace Scripts
 
         // Update is called once per frame
 
-        void EnemyDestination(Vector3 endPoint)
+        public void EnemyDestination(Vector3 endPoint)
         {
 
             if (_navMeshAgent != null)
@@ -64,6 +65,12 @@ namespace Scripts
         private void OnDestroy()
         {
             SpawnManager.Instance._enemyCounter--;
+        }
+
+        public Vector3 SetDestination()
+        {
+            _destination = GameManager.Instance.GetEndZone();
+            return _destination.transform.position;
         }
     }
 }

@@ -81,7 +81,7 @@ namespace Scripts.Managers
                     Debug.Log("ENEMY SPAWNED");
 
                     //Instantiate(_prefabEnemies[RandomIndexGenerator()], _startingPoint.transform.position, _startingPoint.transform.rotation);
-                    Debug.Log(_randomIndexEnemy);
+                    //Debug.Log(_randomIndexEnemy);
                     _actualWave++;
                 }
             }
