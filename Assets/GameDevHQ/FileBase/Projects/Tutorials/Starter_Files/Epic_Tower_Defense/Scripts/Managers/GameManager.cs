@@ -26,25 +26,11 @@ namespace Scripts.Managers
         [SerializeField]
         private Transform _endZoneTrigger;
         private float _moneyCounter;
-        
-
 
         //Singleton instantiation
         private void Awake()
         {
             _instance = this;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public Transform GetEndZone()

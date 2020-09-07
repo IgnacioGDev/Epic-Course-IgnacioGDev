@@ -67,7 +67,7 @@ namespace Scripts.Managers
         {
             while (true)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(5);
                 if (_actualWave < (_initialWave * _waveMultiplier))
                 {
 
