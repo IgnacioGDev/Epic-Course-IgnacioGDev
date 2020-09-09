@@ -47,7 +47,7 @@ namespace Scripts.Managers
             {
 
                 //GameObject enemy = Instantiate(_enemyPrefab);
-                GameObject enemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()]);
+                GameObject enemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager.Instance.GetStartPos(), SpawnManager.Instance.InitRotation());
                 
                 //setting the enemy prefab parent in hierarchy
                 enemy.transform.parent = _enemyContainer.transform;
@@ -82,14 +82,12 @@ namespace Scripts.Managers
 
             /*if inactive enemies were not found in the hierarchy (through the
               for loop above), then new ones are going to be instantiated */
-            GameObject newEnemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager.Instance.GetStartPos(), transform.rotation);
+            GameObject newEnemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager.Instance.GetStartPos(), SpawnManager.Instance.InitRotation());
             Debug.Log(RandomIndexGenerator());
             newEnemy.transform.parent = _enemyContainer.transform;
             /*Line 72 sets the newEnemy destination atribute, accessing and setting it through GetComponent<EnemyAI> Class, 
               then saving the value into the "endPoint" variable. */
-            newEnemy.GetComponent<EnemyAI>()._destination = GameManager.Instance.GetEndZone();
-            var endPoint = newEnemy.GetComponent<EnemyAI>()._destination;
-            newEnemy.GetComponent<EnemyAI>().EnemyDestination(endPoint.transform.position);
+            
             _enemyPool.Add(newEnemy);
 
             return newEnemy;

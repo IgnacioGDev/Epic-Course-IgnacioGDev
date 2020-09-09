@@ -38,6 +38,12 @@ namespace Scripts
             {
                 _navMeshAgent = GetComponent<NavMeshAgent>();
 
+                if (_navMeshAgent != null)
+                {
+                    _navMeshAgent.Warp(SpawnManager.Instance.GetStartPos());
+                    _destination = GameManager.Instance.GetEndZone();
+                    EnemyDestination(_destination.transform.position);
+                } 
             }
         }
 

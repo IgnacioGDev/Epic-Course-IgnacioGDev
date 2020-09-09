@@ -37,12 +37,13 @@ namespace Scripts.Managers
         private int _randomIndexEnemy;
         private float _randomIndexMin = 0f;
         private float _randomIndexMax = 1f;
-        public int _enemyCounter;
+        private int _enemyCounter;
 
         // Singleton instantiation
         private void Awake()
         {
             _instance = this;
+            EndZoneTrigger.onEnemyReachedEnd += OnEndZoneReach;
         }
 
         // Start is called before the first frame update
@@ -85,7 +86,6 @@ namespace Scripts.Managers
                     _actualWave++;
                 }
             }
-
         }
 
         private int RandomIndexGenerator()
@@ -106,6 +106,17 @@ namespace Scripts.Managers
         public Vector3 GetStartPos()
         {
             return _startingPoint.transform.position;
+        }
+
+        public void OnEndZoneReach()
+        {
+            //Modify enemyCounter from here
+            _enemyCounter--;
+        }
+
+        public Quaternion InitRotation()
+        {
+            return _startingPoint.transform.rotation;
         }
     }
 }
