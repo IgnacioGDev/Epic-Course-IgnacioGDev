@@ -55,7 +55,19 @@ namespace Scripts.Managers
                     //GAME COMPLETE
                     break;
                 }
-                yield return new WaitForSeconds(delay);
+
+                if (isOnWave == false)
+                {
+                    yield return new WaitForSeconds(5);
+                    //Debug.Log("IsOnWave is: " + isOnWave);
+                    isOnWave = true;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(delay);
+                    //Debug.Log("IsOnWave is: " + isOnWave);
+                }
+                
                 var enemy = PoolManager.Instance.RequestEnemy();
                 //if enemy is null
                 if (enemy != null)
@@ -88,6 +100,7 @@ namespace Scripts.Managers
 
         public void StartNextWave()
         {
+            isOnWave = false;
             _enemyCounter = 0;
             StartCoroutine(SpawnSequence());
         }
@@ -102,8 +115,6 @@ namespace Scripts.Managers
             _enemyCounter++;
             Debug.Log("AMOUNT OF ENEMIES OF ACTUAL WAVE: " + _enemyCounter);
         }
-
-
     }
 }
 
