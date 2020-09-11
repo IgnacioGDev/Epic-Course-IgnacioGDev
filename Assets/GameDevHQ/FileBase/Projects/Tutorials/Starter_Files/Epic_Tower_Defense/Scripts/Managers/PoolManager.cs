@@ -22,8 +22,6 @@ namespace Scripts.Managers
             }
         }
 
-        //[SerializeField]
-        //private GameObject[] _enemyPrefabs;
         [SerializeField]
         private GameObject _enemy;
         [SerializeField]
@@ -58,8 +56,8 @@ namespace Scripts.Managers
 
                 foreach (Wave wave in _waveList)
                 {
-                    Debug.Log("NUMBER OF WAVES: " + _waveList.Count);
-                //create a container for each wave right here
+                    //Debug.Log("NUMBER OF WAVES: " + _waveList.Count);
+                    //create a container for each wave right here
                     var nextWave = new GameObject("Wave: " + wave.waveID);
                     nextWave.transform.parent = _enemyContainer.transform;
                     
@@ -71,23 +69,9 @@ namespace Scripts.Managers
                         _enemy.transform.parent = nextWave.transform; //
                         _enemy.SetActive(false);
 
-
-                        //GameObject enemy = Instantiate(_enemyPrefab);
-                        //GameObject enemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager_ScriptableObjects.Instance.GetStartPos(), SpawnManager_ScriptableObjects.Instance.InitRotation());
-
-                        ////setting the enemy prefab parent in hierarchy
-                        //enemy.transform.parent = _enemyContainer.transform;
-                        //enemy.SetActive(false);
-                        //_enemyPool.Add(enemy);
                     }
                 }
         }
-
-
-        //private int RandomIndexGenerator()
-        //{
-        //    return _randomIndex = Mathf.RoundToInt(Random.Range(_minIndex, _enemyPrefabs.Length));
-        //}
 
         public GameObject RequestEnemy()
         {
@@ -116,12 +100,17 @@ namespace Scripts.Managers
         {
             if (_currentWaveIndex < _waveList.Count)
             {
-                Debug.Log("CURRENT WAVE " + _currentWaveIndex);
+                //Debug.Log("CURRENT WAVE " + _currentWaveIndex);
                 return _waveList[_currentWaveIndex].spawnDelay;
             }
             else
                 return 200;
             
+        }
+
+        public int GetCurrentWaveCount()
+        {
+            return _waveList[_currentWaveIndex-1].enemies.Count;
         }
     }
 }

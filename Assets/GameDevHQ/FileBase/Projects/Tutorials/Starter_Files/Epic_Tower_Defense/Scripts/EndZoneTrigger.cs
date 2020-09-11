@@ -29,7 +29,18 @@ namespace Scripts
             {
                 Llamar corrutina para empezar siguente wave;
             }*/
+            SpawnManager_ScriptableObjects.Instance.AmountOfEnemiesDestroyed();
 
+            if (SpawnManager_ScriptableObjects.Instance.GetCurrentEnemiesCount() >= PoolManager.Instance.GetCurrentWaveCount())
+            {
+                Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
+                SpawnManager_ScriptableObjects.Instance.StartNextWave();
+            }
+            else
+            {
+                Debug.Log("WAVE YET TO BE FNISHED");
+            }
+                
 
 
             /* UTILIZAR EN CASO DE NECESIDAD AUXILIAR PARA REQUEST DE ARRIBA

@@ -26,6 +26,8 @@ namespace Scripts.Managers
         private Transform _startingPoint;
         [SerializeField]
         private int _enemyCounter;
+        [SerializeField]
+        private bool isOnWave;
 
 
         private void Awake()
@@ -88,6 +90,17 @@ namespace Scripts.Managers
         {
             _enemyCounter = 0;
             StartCoroutine(SpawnSequence());
+        }
+
+        public int GetCurrentEnemiesCount()
+        {
+            return _enemyCounter;
+        }
+
+        public void AmountOfEnemiesDestroyed()
+        {
+            _enemyCounter++;
+            Debug.Log("AMOUNT OF ENEMIES OF ACTUAL WAVE: " + _enemyCounter);
         }
 
 
