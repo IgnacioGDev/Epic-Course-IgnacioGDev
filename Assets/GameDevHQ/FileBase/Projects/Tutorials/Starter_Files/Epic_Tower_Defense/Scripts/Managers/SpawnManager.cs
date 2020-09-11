@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿
+/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -56,12 +58,13 @@ namespace Scripts.Managers
 
             _enemyCounter = _initialWave * _waveMultiplier;
             StartCoroutine(EnemySpawner());
+            _enemyCounter = SpawnManager_ScriptableObjects.Instance.CurrentWaveEnemies();
 
         }
 
         private void Update()
         {
-           ResetEnemyCounter();
+            ResetEnemyCounter();
         }
 
         IEnumerator EnemySpawner()
@@ -77,7 +80,7 @@ namespace Scripts.Managers
                     GameObject enemy = PoolManager.Instance.RequestEnemy();
                     enemy.SetActive(true);
                     //enemy.transform.position = _startingPoint.transform.position;
-                    
+
 
                     Debug.Log("ENEMY SPAWNED");
 
@@ -114,10 +117,15 @@ namespace Scripts.Managers
             _enemyCounter--;
         }
 
+        public int EnemyCounter()
+        {
+            return _enemyCounter;
+        }
+
         public Quaternion InitRotation()
         {
             return _startingPoint.transform.rotation;
         }
     }
 }
-
+*/

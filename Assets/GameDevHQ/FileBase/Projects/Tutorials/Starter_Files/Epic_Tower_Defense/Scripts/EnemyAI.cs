@@ -30,7 +30,7 @@ namespace Scripts
             if (_navMeshAgent != null)
             {
                 //_navMeshAgent.enabled = true;
-                _navMeshAgent.Warp(SpawnManager.Instance.GetStartPos());
+                _navMeshAgent.Warp(SpawnManager_ScriptableObjects.Instance.GetStartPos());
                 _destination = GameManager.Instance.GetEndZone();
                 EnemyDestination(_destination.transform.position);
             }
@@ -40,19 +40,12 @@ namespace Scripts
 
                 if (_navMeshAgent != null)
                 {
-                    _navMeshAgent.Warp(SpawnManager.Instance.GetStartPos());
+                    _navMeshAgent.Warp(SpawnManager_ScriptableObjects.Instance.GetStartPos());
                     _destination = GameManager.Instance.GetEndZone();
                     EnemyDestination(_destination.transform.position);
                 } 
             }
-        }
-
-        private void OnDisable()
-        {
-            //_navMeshAgent.enabled = false;
-        }
-
-        // Update is called once per frame
+        }   
 
         public void EnemyDestination(Vector3 endPoint)
         {

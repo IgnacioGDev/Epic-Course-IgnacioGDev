@@ -434,7 +434,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1079767520691416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d867ca561e4260642b8603d669ab5814, type: 3}
+  m_Script: {fileID: 11500000, guid: fd50fc7d3321df34386f96d77d5524fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 0}

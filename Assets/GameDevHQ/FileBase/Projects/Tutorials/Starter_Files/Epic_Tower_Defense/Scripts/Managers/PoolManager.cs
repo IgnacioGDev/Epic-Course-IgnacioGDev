@@ -1,5 +1,6 @@
 ﻿using Scripts;
 using Scripts.Managers;
+using Scripts.ScriptableObjects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,15 +22,26 @@ namespace Scripts.Managers
             }
         }
 
+        //[SerializeField]
+        //private GameObject[] _enemyPrefabs;
         [SerializeField]
-        private GameObject[] _enemyPrefabs;
+        private GameObject _enemy;
         [SerializeField]
         private List<GameObject> _enemyPool;
         [SerializeField]
         private GameObject _enemyContainer;
         [SerializeField]
+        private List<Wave> _waveList;
+        [SerializeField]
         private int _randomIndex;
         private int _minIndex = 0;
+
+        [SerializeField]
+        private int _indexCounter = 0;
+
+
+        [SerializeField]
+        private int _currentWaveIndex = 0;
 
         private void Awake()
         {
@@ -38,59 +50,78 @@ namespace Scripts.Managers
         // Start is called before the first frame update
         void Start()
         {
-            _enemyPool = GenerateEnemies(3);
+            GenerateEnemies();
         }
 
-        List<GameObject> GenerateEnemies(int amountOfEnemies)
+        private void  GenerateEnemies()
         {
-            for (int i = 0; i < amountOfEnemies; i++)
-            {
 
-                //GameObject enemy = Instantiate(_enemyPrefab);
-                GameObject enemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager.Instance.GetStartPos(), SpawnManager.Instance.InitRotation());
-                
-                //setting the enemy prefab parent in hierarchy
-                enemy.transform.parent = _enemyContainer.transform;
-                enemy.SetActive(false);
-                _enemyPool.Add(enemy);
-            }
-            return _enemyPool;
+                foreach (Wave wave in _waveList)
+                {
+                    Debug.Log("NUMBER OF WAVES: " + _waveList.Count);
+                //create a container for each wave right here
+                    var nextWave = new GameObject("Wave: " + wave.waveID);
+                    nextWave.transform.parent = _enemyContainer.transform;
+                    
+                    foreach (GameObject enemy in wave.enemies)
+                    {
+                        _enemy = Instantiate(enemy, SpawnManager_ScriptableObjects.Instance.GetStartPos(), SpawnManager_ScriptableObjects.Instance.InitRotation());
+
+                        //setting the enemy prefab parent in hierarchy
+                        _enemy.transform.parent = nextWave.transform; //
+                        _enemy.SetActive(false);
+
+
+                        //GameObject enemy = Instantiate(_enemyPrefab);
+                        //GameObject enemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager_ScriptableObjects.Instance.GetStartPos(), SpawnManager_ScriptableObjects.Instance.InitRotation());
+
+                        ////setting the enemy prefab parent in hierarchy
+                        //enemy.transform.parent = _enemyContainer.transform;
+                        //enemy.SetActive(false);
+                        //_enemyPool.Add(enemy);
+                    }
+                }
         }
-        private int RandomIndexGenerator()
-        {
-            return _randomIndex = Mathf.RoundToInt(Random.Range(_minIndex, _enemyPrefabs.Length));
-        }
+
+
+        //private int RandomIndexGenerator()
+        //{
+        //    return _randomIndex = Mathf.RoundToInt(Random.Range(_minIndex, _enemyPrefabs.Length));
+        //}
 
         public GameObject RequestEnemy()
         {
-            /*loop through the enemy list and will return the first enemy
-            that is not active in hierarchy (activating it in the process) */
-            foreach (var enemy in _enemyPool)
+            //get wave based on currentWaveIndex
+            var currentWave = _enemyContainer.transform.GetChild(_currentWaveIndex);
+            var currentChildren = currentWave.GetComponentsInChildren<Transform>(true);
+            foreach (var enemy in currentChildren)
             {
-                if (enemy.activeInHierarchy == false)
+                if (enemy.gameObject.activeInHierarchy == false)
                 {
-                    //enemy available
-                    enemy.SetActive(true);
-                    //gives enemy to spawn manager
-                    return enemy;
-                }
-                else if (enemy == null)
-                {
-                    Debug.Log("RequestEnemy()::No more objects available to request!");
+                    return enemy.gameObject;
                 }
             }
 
-            /*if inactive enemies were not found in the hierarchy (through the
-              for loop above), then new ones are going to be instantiated */
-            GameObject newEnemy = Instantiate(_enemyPrefabs[RandomIndexGenerator()], SpawnManager.Instance.GetStartPos(), SpawnManager.Instance.InitRotation());
-            Debug.Log(RandomIndexGenerator());
-            newEnemy.transform.parent = _enemyContainer.transform;
-            /*Line 72 sets the newEnemy destination atribute, accessing and setting it through GetComponent<EnemyAI> Class, 
-              then saving the value into the "endPoint" variable. */
-            
-            _enemyPool.Add(newEnemy);
+            //if we make it here...we need to prepare for next wave
+            _currentWaveIndex++;
+            return null;
+        }
 
-            return newEnemy;
+        public List<GameObject> EnemiesInPool()
+        {
+            return _enemyPool;
+        }
+
+        public int ReturnCurrentWaveDelay()
+        {
+            if (_currentWaveIndex < _waveList.Count)
+            {
+                Debug.Log("CURRENT WAVE " + _currentWaveIndex);
+                return _waveList[_currentWaveIndex].spawnDelay;
+            }
+            else
+                return 200;
+            
         }
     }
 }
