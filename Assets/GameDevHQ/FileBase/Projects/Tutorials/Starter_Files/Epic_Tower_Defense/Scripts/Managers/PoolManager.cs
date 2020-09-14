@@ -31,14 +31,6 @@ namespace Scripts.Managers
         [SerializeField]
         private List<Wave> _waveList;
         [SerializeField]
-        private int _randomIndex;
-        private int _minIndex = 0;
-
-        [SerializeField]
-        private int _indexCounter = 0;
-
-
-        [SerializeField]
         private int _currentWaveIndex = 0;
 
         private void Awake()
@@ -73,13 +65,20 @@ namespace Scripts.Managers
                 }
         }
 
+        //Ask why we are expecting to return a GameObject in this method
         public GameObject RequestEnemy()
         {
-            //get wave based on currentWaveIndex
+            //gets wave based on currentWaveIndex
             var currentWave = _enemyContainer.transform.GetChild(_currentWaveIndex);
+
+            //gets transforms of all enemies of the current wave regardless active or inactive
             var currentChildren = currentWave.GetComponentsInChildren<Transform>(true);
+
+            //loops through every enemy transform in currentChildren
             foreach (var enemy in currentChildren)
             {
+                /*checks for the first enemy inactive in the hierarchy (from the current wave).
+                  Once captured, its returned to whatever is invoking this method. */
                 if (enemy.gameObject.activeInHierarchy == false)
                 {
                     return enemy.gameObject;
@@ -88,6 +87,7 @@ namespace Scripts.Managers
 
             //if we make it here...we need to prepare for next wave
             _currentWaveIndex++;
+            //Wave is done, then return null.  no gameObjects left
             return null;
         }
 

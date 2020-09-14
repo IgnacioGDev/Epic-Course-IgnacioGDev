@@ -2479,6 +2479,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -2544,11 +2545,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.3415091, y: -0.50456697, z: 0.22678031, w: -0.7598384}
-  m_LocalPosition: {x: -35.38189, y: 20.287218, z: -6.0906496}
+  m_LocalRotation: {x: -0.40184128, y: 0.1805042, z: -0.081125505, w: -0.8940697}
+  m_LocalPosition: {x: 6.0906544, y: 20.287218, z: -37.800003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1403176360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534669906
@@ -2611,6 +2612,37 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &534669908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &552431162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,7 +2888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &592720669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4061,6 +4093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingPoint: {fileID: 1229042316}
   _enemyCounter: 0
+  _isOnWave: 0
+  _delayBetweenWaves: 5
 --- !u!4 &870197622
 Transform:
   m_ObjectHideFlags: 0
@@ -6931,6 +6965,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401617932}
   m_CullTransparentMesh: 0
+--- !u!1 &1403176358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403176360}
+  - component: {fileID: 1403176359}
+  m_Layer: 0
+  m_Name: CameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1403176359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403176358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4185594eaa00ec64bb06f86d7bb43fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMovement: 10
+  scale: 2
+  _xBoundaryMin: -20
+  _xBoundaryMax: 10
+  _yBoundaryMin: -7
+  _yBoundaryMax: 7.5
+  _zBoundaryMin: -7
+  _zBoundaryMax: 7
+  _borderThickness: 10
+  _panSpeed: 10
+--- !u!4 &1403176360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403176358}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 534669905}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1407527126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10337,8 +10425,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6db6b81103056674b8b8939e277b9d18, type: 2}
   - {fileID: 11400000, guid: d72c3ee53af32f143b6abd6d538e392e, type: 2}
   - {fileID: 11400000, guid: 4d4ea8af07d24644185d7a9015d7e2d1, type: 2}
-  _randomIndex: 0
-  _indexCounter: 0
   _currentWaveIndex: 0
 --- !u!4 &2062201742
 Transform:

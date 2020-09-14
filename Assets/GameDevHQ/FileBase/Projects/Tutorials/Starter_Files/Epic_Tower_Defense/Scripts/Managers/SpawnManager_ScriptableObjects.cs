@@ -27,7 +27,9 @@ namespace Scripts.Managers
         [SerializeField]
         private int _enemyCounter;
         [SerializeField]
-        private bool isOnWave;
+        private bool _isOnWave;
+        [SerializeField]
+        private int _delayBetweenWaves;
 
 
         private void Awake()
@@ -56,11 +58,11 @@ namespace Scripts.Managers
                     break;
                 }
 
-                if (isOnWave == false)
+                if (_isOnWave == false)
                 {
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(_delayBetweenWaves);
                     //Debug.Log("IsOnWave is: " + isOnWave);
-                    isOnWave = true;
+                    _isOnWave = true;
                 }
                 else
                 {
@@ -69,11 +71,13 @@ namespace Scripts.Managers
                 }
                 
                 var enemy = PoolManager.Instance.RequestEnemy();
-                //if enemy is null
+                //if enemy is NOT null
                 if (enemy != null)
                 {
                     enemy.SetActive(true);
                 }
+                //Ask to Jon about this break, what is it doing exactly?
+                //Wave finished, Corroutine stopped. 
                 else
                 {
                     break;
@@ -100,7 +104,7 @@ namespace Scripts.Managers
 
         public void StartNextWave()
         {
-            isOnWave = false;
+            _isOnWave = false;
             _enemyCounter = 0;
             StartCoroutine(SpawnSequence());
         }
