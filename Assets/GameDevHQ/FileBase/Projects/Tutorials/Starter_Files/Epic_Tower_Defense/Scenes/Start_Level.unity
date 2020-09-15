@@ -968,7 +968,32 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (5)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -1037,7 +1062,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (3)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -1704,12 +1759,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254106823}
   m_CullTransparentMesh: 0
+--- !u!1 &257728166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 121918505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &257728167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 121918505}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &257728168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257728166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &260365785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1775,16 +1849,65 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (2)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
+--- !u!1 &261538200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1998799965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &261538201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1998799965}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &261538202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261538200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &284333871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2674,7 +2797,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (8)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -3158,12 +3311,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 560052602}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &563226899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 509212877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &563226900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 509212877}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &563226901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563226899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1 &592720668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,7 +3570,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (4)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -3539,12 +3741,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640746100}
   m_CullTransparentMesh: 0
+--- !u!1 &665576771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 120808555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &665576772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 120808555}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &665576773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665576771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &677102450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4221,12 +4442,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789348576}
   m_CullTransparentMesh: 0
+--- !u!1 &793808202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1289893107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &793808203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1289893107}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &793808204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793808202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1 &806446188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4389,12 +4629,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 826353634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &839421801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 637564011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &839421802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 637564011}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &839421803
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839421801}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1 &844408573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,7 +5725,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (13)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -5740,12 +5999,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1098042156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1034948971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1098042157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1034948971}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1098042158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098042156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1109579365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5811,7 +6089,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (16)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -5935,7 +6213,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (9)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -6752,7 +7060,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (15)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -6827,11 +7135,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1308420881}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1311707683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1121497818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1311707684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1121497818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1311707685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311707683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
+--- !u!1 &1316289878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1921809569}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1316289879 stripped
 Transform:
@@ -6839,6 +7172,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1921809569}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1316289880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316289878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1320956505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7093,7 +7439,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (12)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -8260,7 +8606,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (10)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -8702,7 +9078,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (11)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -9471,11 +9847,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1637803658}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1665867524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1109579365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1665867525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1109579365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1665867526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665867524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
+--- !u!1 &1670480421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1492169040}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1670480422 stripped
 Transform:
@@ -9483,6 +9884,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1492169040}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1670480423
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670480421}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1681217756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9782,12 +10196,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700177796}
   m_CullTransparentMesh: 0
+--- !u!1 &1705782056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 260365785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1705782057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 260365785}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1705782058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705782056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1 &1706649505
 GameObject:
   m_ObjectHideFlags: 0
@@ -10086,12 +10519,31 @@ Transform:
   m_Father: {fileID: 246519963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1725749066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1348609705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1725749067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1348609705}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1725749068
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725749066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1729764490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10332,12 +10784,31 @@ Transform:
   m_Father: {fileID: 960115119}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!1 &1778756256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2043613014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1778756257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 2043613014}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1778756258
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778756256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1811507699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10899,7 +11370,27 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (1)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -11444,12 +11935,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1984946576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1996075734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1579077712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1996075735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 1579077712}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1996075736
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996075734}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1001 &1998799965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11515,16 +12025,65 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (6)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
+--- !u!1 &2013231983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2060379214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2013231984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415226371030016988, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
   m_PrefabInstance: {fileID: 2060379214}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &2013231985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013231983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.75, z: 0.25}
 --- !u!1 &2034520036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
@@ -11596,7 +12155,37 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (7)
+      value: TowerPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432180846069177190, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432212770656173550, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432340108795794320, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432443867047048122, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432469627768650236, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432630705294751202, guid: 6fb2616584c492b488bd60a3a0291bd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
@@ -11752,7 +12341,7 @@ PrefabInstance:
     - target: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
         type: 3}
       propertyPath: m_Name
-      value: Fake_Gatling_Gun (14)
+      value: TowerPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2616584c492b488bd60a3a0291bd5, type: 3}
