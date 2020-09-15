@@ -67,18 +67,22 @@ namespace Scripts
             if (Input.mousePosition.y >= Screen.height)
             {
                 pos.x += _panSpeed * Time.deltaTime;
+                //transform.Translate(Vector3.forward * _panSpeed * Time.deltaTime);
             }
             if (Input.mousePosition.y <= _borderThickness)
             {
                 pos.x -= _panSpeed * Time.deltaTime;
+                //transform.Translate(Vector3.back * _panSpeed * Time.deltaTime);
             }
             if (Input.mousePosition.x >= Screen.width)
             {
                 pos.z -= _panSpeed * Time.deltaTime; ;
+                //transform.Translate(Vector3.right * _panSpeed * Time.deltaTime);
             }
             if (Input.mousePosition.x <= _borderThickness)
             {
                 pos.z += _panSpeed * Time.deltaTime;
+                //transform.Translate(Vector3.left * _panSpeed * Time.deltaTime);
             }
             /* 'pos' value (and its axles) are assigned back to camera's transform.position,
              * thus, the camera position.x and z values will change according the if statements above */
