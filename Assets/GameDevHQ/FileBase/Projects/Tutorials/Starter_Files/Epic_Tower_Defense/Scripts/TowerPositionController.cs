@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.Managers;
 
 public class TowerPositionController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class TowerPositionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Test();
     }
 
     private void OnMouseEnter()
@@ -37,10 +38,19 @@ public class TowerPositionController : MonoBehaviour
         foreach (var mR in _mRenders)
         {
             mR.enabled = false;
-            //if (TowerPlacementController.Instance.GetIsTowerButtonBeingPushed() == false)
-            //{
-            //    mR.enabled = false;
-            //}
         }
     }
+
+    void Test()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            foreach (var mR in _mRenders)
+            {
+                mR.enabled = false;
+            }
+        }
+    }
+
+    
 }
