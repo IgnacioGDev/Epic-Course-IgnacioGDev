@@ -4,19 +4,38 @@ using UnityEngine;
 
 public class TowerPlacementController : MonoBehaviour
 {
+    private static TowerPlacementController _instance;
+    public static TowerPlacementController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("TowerPlacementController is NULL");
+            }
+            return _instance;
+        }
+    }
+
     [SerializeField]
     private GameObject _fakeTower;
     [SerializeField]
     private GameObject _gatlingGun;
     private bool _canPlaceTower = false;
     private MeshRenderer[] _childMeshRenderers;
+    private bool _isHotKeyPushed = false;
 
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         _fakeTower.SetActive(false);
-        
+
     }
 
     // Update is called once per frame
@@ -35,14 +54,23 @@ public class TowerPlacementController : MonoBehaviour
         if (Physics.Raycast(rayOrigin, out hitInfo))
         {
             Debug.Log("Raycast info/ hitting: " + hitInfo.collider);
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) && _fakeTower.activeSelf == false)
             {
                 _fakeTower.SetActive(true);
+                _isHotKeyPushed = true;
+                
             }
-            if (Input.GetMouseButtonDown(0))
+            if (_canPlaceTower == false)
             {
-                _fakeTower.SetActive(false);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Debug.Log("CLICK ON DIFFERENT TERRAIN");
+                    _fakeTower.SetActive(false);
+
+                }
             }
+
             _fakeTower.transform.position = hitInfo.point;
             //hit info may contain a valid spot
             //valid spot is true?
@@ -50,30 +78,32 @@ public class TowerPlacementController : MonoBehaviour
 
             if (_canPlaceTower == true)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && _isHotKeyPushed == true)
                 {
-                    Instantiate(_gatlingGun, hitInfo.point, Quaternion.identity);
+                    Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
                     _canPlaceTower = false;
                     hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    _isHotKeyPushed = false;
                 }
             }
-
-            //EXPERIMENTAL!!!
             if (hitInfo.collider.gameObject.name == "TowerPosition")
             {
                 _canPlaceTower = true;
-                _childMeshRenderers = hitInfo.collider.gameObject.GetComponentsInChildren<MeshRenderer>();
-                foreach (var mR in _childMeshRenderers)
-                {
-                    //mR.enabled = true;
-                }
-
+                _fakeTower.SetActive(false);
             }
             else
             {
                 _canPlaceTower = false;
-
+                if (_isHotKeyPushed == true)
+                {
+                    _fakeTower.SetActive(true);    
+                }
             }
-        }       
+        }
+    }
+
+    public bool GetIsTowerButtonBeingPushed()
+    {
+        return _isHotKeyPushed;
     }
 }
