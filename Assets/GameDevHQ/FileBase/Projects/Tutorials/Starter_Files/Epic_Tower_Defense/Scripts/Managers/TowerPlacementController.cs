@@ -102,6 +102,7 @@ namespace Scripts.Managers
                         Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
                         _canPlaceTower = false;
                         hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                        hitInfo.collider.gameObject.GetComponent<TowerPositionController>().TowerPlaced();
                         _isTowerPlaced = true;
                         //_isHotKeyPushed = false;
                     }

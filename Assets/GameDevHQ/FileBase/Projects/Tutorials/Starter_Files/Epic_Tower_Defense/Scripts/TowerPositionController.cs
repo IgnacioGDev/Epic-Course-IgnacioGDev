@@ -12,6 +12,7 @@ public class TowerPositionController : MonoBehaviour
     private MeshRenderer[] _mRenders;
     [SerializeField]
     private GameObject _particle;
+    private bool _isAvailable = true;
 
 
     // Start is called before the first frame update
@@ -62,12 +63,17 @@ public class TowerPositionController : MonoBehaviour
 
     public void ManageParticles()
     {
-        if (TowerPlacementController.Instance.TowerHasBeenPlaced() == true)
+        if (_isAvailable == false)
         {
             Debug.Log("PARTICLES // TOWER HAS BEEN PLACED");
             _particleSystem.enableEmission = false;
             //_particle.SetActive(false);
         }     
+    }
+
+    public void TowerPlaced()
+    {
+        _isAvailable = false;
     }
 
     
