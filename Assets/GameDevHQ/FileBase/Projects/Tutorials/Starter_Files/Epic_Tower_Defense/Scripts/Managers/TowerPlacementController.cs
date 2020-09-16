@@ -26,6 +26,7 @@ namespace Scripts.Managers
         private bool _canPlaceTower = false;
         private MeshRenderer[] _childMeshRenderers;
         private bool _isHotKeyPushed = false;
+        private bool _isTowerPlaced = false;
 
         private void Awake()
         {
@@ -43,7 +44,7 @@ namespace Scripts.Managers
         void Update()
         {
             TowerUnderMouseMovement();
-            Debug.Log(_canPlaceTower);
+            Debug.Log(_isTowerPlaced);
 
         }
 
@@ -101,7 +102,12 @@ namespace Scripts.Managers
                         Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
                         _canPlaceTower = false;
                         hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                        _isTowerPlaced = true;
                         //_isHotKeyPushed = false;
+                    }
+                    if (Input.GetMouseButtonUp(0) && _isHotKeyPushed == true)
+                    {
+                        _isTowerPlaced = false;
                     }
                 }
 
@@ -111,6 +117,11 @@ namespace Scripts.Managers
         public bool GetIsTowerButtonBeingPushed()
         {
             return _isHotKeyPushed;
+        }
+
+        public bool TowerHasBeenPlaced()
+        {
+            return _isTowerPlaced;
         }
     }
 
