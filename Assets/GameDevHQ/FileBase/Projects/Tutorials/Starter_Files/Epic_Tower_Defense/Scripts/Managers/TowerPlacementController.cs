@@ -23,10 +23,14 @@ namespace Scripts.Managers
         private GameObject _fakeTower;
         [SerializeField]
         private GameObject _gatlingGun;
+        [SerializeField]
+        private GameObject _radius;
         private bool _canPlaceTower = false;
         private MeshRenderer[] _childMeshRenderers;
         private bool _isHotKeyPushed = false;
-        private bool _isTowerPlaced = false;
+
+
+        private bool _particlesOn = false;
 
         private void Awake()
         {
@@ -37,6 +41,7 @@ namespace Scripts.Managers
         void Start()
         {
             _fakeTower.SetActive(false);
+            _radius.SetActive(false);
 
         }
 
@@ -44,7 +49,7 @@ namespace Scripts.Managers
         void Update()
         {
             TowerUnderMouseMovement();
-            Debug.Log(_isTowerPlaced);
+
 
         }
 
@@ -60,16 +65,22 @@ namespace Scripts.Managers
                 if (Input.GetKeyDown(KeyCode.Alpha1) && _fakeTower.activeSelf == false)
                 {
                     _fakeTower.SetActive(true);
+                    _radius.SetActive(true);
                     _isHotKeyPushed = true;
-
+                    //_radius.GetComponent<MeshRenderer>().material.color = Color.red;
                 }
 
+                //FakeTower follows Mouse position
                 _fakeTower.transform.position = hitInfo.point;
+                _radius.transform.position = hitInfo.point;
 
+                //hitInfo checks if mouse is hovering over "TowerPosition"
                 if (hitInfo.collider.gameObject.name == "TowerPosition")
                 {
                     _canPlaceTower = true;
                     _fakeTower.SetActive(false);
+                    //_radius.GetComponent<MeshRenderer>().material.color = Color.green;
+                    _radius.SetActive(false);
                 }
                 else
                 {
@@ -77,7 +88,10 @@ namespace Scripts.Managers
                     if (_isHotKeyPushed == true)
                     {
                         _fakeTower.SetActive(true);
+                        _radius.SetActive(true);
+                        //_radius.GetComponent<MeshRenderer>().material.color = Color.red;
                     }
+                    
                 }
 
                 if (_canPlaceTower == false)
@@ -86,30 +100,36 @@ namespace Scripts.Managers
                     {
                         _isHotKeyPushed = false;
                         _fakeTower.SetActive(false);
+                        _radius.SetActive(false);
                     }
                 }
 
+                //TOWER LOGIC INSTANTIATION
                 if (_canPlaceTower == true)
                 {
                     if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
                     {
                         _isHotKeyPushed = false;
                         _fakeTower.SetActive(false);
+                        _radius.SetActive(false);
                     }
 
                     if (Input.GetMouseButtonDown(0) && _isHotKeyPushed == true)
                     {
-                        Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
-                        _canPlaceTower = false;
-                        hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
-                        hitInfo.collider.gameObject.GetComponent<TowerPositionController>().TowerPlaced();
-                        _isTowerPlaced = true;
-                        //_isHotKeyPushed = false;
+                        //FIX THIS CRAP AS SOON AS YOU HAVE TIME
+                        if (GameManager.Instance.GetWarFunds() > 350f)
+                        {
+                            Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
+                            _canPlaceTower = false;
+                            hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                            /*Invokes TowerPlaced() method from Particles class, which checks if _isAvailable is true or false.
+                             if is false then turns of the particles for this spot in the Particles script */
+                            hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
+                            GameManager.Instance.ChargeWarFunds();
+                        }
+
                     }
-                    if (Input.GetMouseButtonUp(0) && _isHotKeyPushed == true)
-                    {
-                        _isTowerPlaced = false;
-                    }
+
                 }
 
             }
@@ -120,10 +140,11 @@ namespace Scripts.Managers
             return _isHotKeyPushed;
         }
 
-        public bool TowerHasBeenPlaced()
+        public bool ParticlesToogle()
         {
-            return _isTowerPlaced;
+            return _particlesOn;
         }
+
     }
 
 }
