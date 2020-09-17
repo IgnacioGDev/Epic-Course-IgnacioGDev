@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6275672, g: 0.60493606, b: 0.6218419, a: 1}
+  m_IndirectSpecularColor: {r: 0.6397993, g: 0.6132891, b: 0.62881947, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6399,7 +6399,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1821146363788296, guid: 23a8b9b94225d3845aed312b792882a9, type: 3}
       propertyPath: m_Name
-      value: Missile_Launcher_Turret
+      value: Fake_Missile_Launcher_Turret
       objectReference: {fileID: 0}
     - target: {fileID: 4508629992324016, guid: 23a8b9b94225d3845aed312b792882a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12458,7 +12458,8 @@ MonoBehaviour:
   _fakeTower: {fileID: 2034520036}
   _gatlingGun: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
     type: 3}
-  _missileLauncher: {fileID: 835519658}
+  _missileLauncher: {fileID: 1821146363788296, guid: 23a8b9b94225d3845aed312b792882a9,
+    type: 3}
   _fakeMissilieLauncher: {fileID: 835519658}
   _radius: {fileID: 1463486095}
 --- !u!1001 &1407527126

@@ -119,7 +119,7 @@ namespace Scripts.Managers
                         }
 
                     }
-                    
+
                 }
 
                 if (_canPlaceTower == false)
@@ -159,7 +159,7 @@ namespace Scripts.Managers
                                 hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
                                 GameManager.Instance.ChargeWarFunds();
                             }
-                            else if (_isMissileSelected == true)
+                            if (_isMissileSelected == true)
                             {
                                 Instantiate(_missileLauncher, hitInfo.collider.transform.position, Quaternion.identity);
                                 _canPlaceTower = false;
@@ -169,13 +169,12 @@ namespace Scripts.Managers
                                 hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
                                 GameManager.Instance.ChargeWarFunds();
                             }
-                            
+
                         }
 
                     }
 
                 }
-
             }
         }
 
