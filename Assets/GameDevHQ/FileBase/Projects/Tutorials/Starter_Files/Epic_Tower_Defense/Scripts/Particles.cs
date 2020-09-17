@@ -24,7 +24,7 @@ namespace Scripts
 
         void ParticleManagement()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 _particles.Play();
             }

@@ -24,13 +24,18 @@ namespace Scripts.Managers
         [SerializeField]
         private GameObject _gatlingGun;
         [SerializeField]
+        private GameObject _missileLauncher;
+        [SerializeField]
+        private GameObject _fakeMissilieLauncher;
+        [SerializeField]
         private GameObject _radius;
         private bool _canPlaceTower = false;
         private MeshRenderer[] _childMeshRenderers;
         private bool _isHotKeyPushed = false;
 
+        private bool _isTowerSelected = false;
+        private bool _isMissileSelected = false;
 
-        private bool _particlesOn = false;
 
         private void Awake()
         {
@@ -42,7 +47,7 @@ namespace Scripts.Managers
         {
             _fakeTower.SetActive(false);
             _radius.SetActive(false);
-
+            _fakeMissilieLauncher.SetActive(false);
         }
 
         // Update is called once per frame
@@ -64,14 +69,26 @@ namespace Scripts.Managers
 
                 if (Input.GetKeyDown(KeyCode.Alpha1) && _fakeTower.activeSelf == false)
                 {
+                    _isTowerSelected = true;
+                    _isMissileSelected = false;
                     _fakeTower.SetActive(true);
                     _radius.SetActive(true);
                     _isHotKeyPushed = true;
-                    //_radius.GetComponent<MeshRenderer>().material.color = Color.red;
+                    _radius.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2) && _fakeMissilieLauncher.activeSelf == false)
+                {
+                    _isMissileSelected = true;
+                    _isTowerSelected = false;
+                    _fakeMissilieLauncher.SetActive(true);
+                    _radius.SetActive(true);
+                    _isHotKeyPushed = true;
+                    _radius.GetComponent<MeshRenderer>().material.color = Color.red;
                 }
 
                 //FakeTower follows Mouse position
                 _fakeTower.transform.position = hitInfo.point;
+                _fakeMissilieLauncher.transform.position = hitInfo.point;
                 _radius.transform.position = hitInfo.point;
 
                 //hitInfo checks if mouse is hovering over "TowerPosition"
@@ -79,7 +96,8 @@ namespace Scripts.Managers
                 {
                     _canPlaceTower = true;
                     _fakeTower.SetActive(false);
-                    //_radius.GetComponent<MeshRenderer>().material.color = Color.green;
+                    _fakeMissilieLauncher.SetActive(false);
+                    _radius.GetComponent<MeshRenderer>().material.color = Color.green;
                     _radius.SetActive(false);
                 }
                 else
@@ -87,9 +105,19 @@ namespace Scripts.Managers
                     _canPlaceTower = false;
                     if (_isHotKeyPushed == true)
                     {
-                        _fakeTower.SetActive(true);
-                        _radius.SetActive(true);
-                        //_radius.GetComponent<MeshRenderer>().material.color = Color.red;
+                        if (_isTowerSelected == true)
+                        {
+                            _fakeTower.SetActive(true);
+                            _radius.SetActive(true);
+                            _radius.GetComponent<MeshRenderer>().material.color = Color.red;
+                        }
+                        else if (_isMissileSelected == true)
+                        {
+                            _fakeMissilieLauncher.SetActive(true);
+                            _radius.SetActive(true);
+                            _radius.GetComponent<MeshRenderer>().material.color = Color.red;
+                        }
+
                     }
                     
                 }
@@ -100,6 +128,7 @@ namespace Scripts.Managers
                     {
                         _isHotKeyPushed = false;
                         _fakeTower.SetActive(false);
+                        _fakeMissilieLauncher.SetActive(false);
                         _radius.SetActive(false);
                     }
                 }
@@ -111,6 +140,7 @@ namespace Scripts.Managers
                     {
                         _isHotKeyPushed = false;
                         _fakeTower.SetActive(false);
+                        _fakeMissilieLauncher.SetActive(false);
                         _radius.SetActive(false);
                     }
 
@@ -119,13 +149,27 @@ namespace Scripts.Managers
                         //FIX THIS CRAP AS SOON AS YOU HAVE TIME
                         if (GameManager.Instance.GetWarFunds() > 350f)
                         {
-                            Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
-                            _canPlaceTower = false;
-                            hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
-                            /*Invokes TowerPlaced() method from Particles class, which checks if _isAvailable is true or false.
-                             if is false then turns of the particles for this spot in the Particles script */
-                            hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
-                            GameManager.Instance.ChargeWarFunds();
+                            if (_isTowerSelected == true)
+                            {
+                                Instantiate(_gatlingGun, hitInfo.collider.transform.position, Quaternion.identity);
+                                _canPlaceTower = false;
+                                hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                                /*Invokes TowerPlaced() method from Particles class, which checks if _isAvailable is true or false.
+                                 if is false then turns of the particles for this spot in the Particles script */
+                                hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
+                                GameManager.Instance.ChargeWarFunds();
+                            }
+                            else if (_isMissileSelected == true)
+                            {
+                                Instantiate(_missileLauncher, hitInfo.collider.transform.position, Quaternion.identity);
+                                _canPlaceTower = false;
+                                hitInfo.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                                /*Invokes TowerPlaced() method from Particles class, which checks if _isAvailable is true or false.
+                                 if is false then turns of the particles for this spot in the Particles script */
+                                hitInfo.collider.gameObject.GetComponent<Particles>().TowerPlaced();
+                                GameManager.Instance.ChargeWarFunds();
+                            }
+                            
                         }
 
                     }
@@ -140,9 +184,14 @@ namespace Scripts.Managers
             return _isHotKeyPushed;
         }
 
-        public bool ParticlesToogle()
+        public bool IsTowerSelected()
         {
-            return _particlesOn;
+            return _isTowerSelected;
+        }
+
+        public bool IsMissileSelected()
+        {
+            return _isMissileSelected;
         }
 
     }
