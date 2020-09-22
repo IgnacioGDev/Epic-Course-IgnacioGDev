@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Managers;
@@ -11,6 +12,8 @@ namespace Scripts
         private bool _isAvailable = true;
         [SerializeField]
         private GameObject _particle;
+
+        public static event Action onBuyingTower;
 
         private void OnEnable()
         {
@@ -25,12 +28,12 @@ namespace Scripts
             {
                 _particle.SetActive(true);
             }
-            
+
         }
 
         private void OnMouseEnter()
         {
-            if (_isAvailable == true)
+            if (_isAvailable == true )
             {
                 //Snap to position
                 //Tuen radius green
@@ -40,9 +43,14 @@ namespace Scripts
 
         private void OnMouseDown()
         {
-            if (_isAvailable == true)
+            if (_isAvailable == true && TowerManager.Instance.CanPlaceTower() == true)
             {
                 //try to place tower
+                if (onBuyingTower != null)
+                {
+                    onBuyingTower();
+                }
+
                 TowerManager.Instance.PlaceTower(transform.position);
                 _isAvailable = false;
                 _particle.SetActive(false);

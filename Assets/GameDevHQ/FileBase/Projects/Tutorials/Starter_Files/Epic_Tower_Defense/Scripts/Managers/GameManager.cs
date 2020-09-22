@@ -44,6 +44,11 @@ namespace Scripts.Managers
             _warFunds = 1000;
         }
 
+        private void OnEnable()
+        {
+            TowerPositionController.onBuyingTower += ChargeWarFunds;
+        }
+
         private void Update()
         {
             _inGameFunds.text = _warFunds.ToString();
@@ -61,8 +66,21 @@ namespace Scripts.Managers
 
         public void ChargeWarFunds()
         {
-            _warFunds -= 350;
-            Debug.Log("Actual Money: " + _warFunds);
+            if (_warFunds > 0)
+            {
+                _warFunds -= 250;
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH WAR FUNDS");
+            }
+            
+
+        }
+
+        private void OnDisable()
+        {
+            TowerPositionController.onBuyingTower -= ChargeWarFunds;
         }
 
 

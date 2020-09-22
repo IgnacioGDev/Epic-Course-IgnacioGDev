@@ -33,10 +33,9 @@ namespace Scripts.Managers
 
         private int _activeDecoyIndex;
         private bool _canPlaceTower = false;
-
+        private bool _isDecoyActive = false;
         public static event Action onPlacingTowers;
         public static event Action onPlacingTowersFinished;
-
 
 
         private void Awake()
@@ -56,7 +55,9 @@ namespace Scripts.Managers
                 _activeDecoyIndex = 0;
 
                 if (onPlacingTowers != null)
+                {
                     onPlacingTowers();
+                }                   
 
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) //Missile launcher
@@ -115,6 +116,12 @@ namespace Scripts.Managers
         public void PlaceTower(Vector3 spotPos)
         {
             Instantiate(_towerPrefabs[_activeDecoyIndex], spotPos, Quaternion.identity);
+        }
+
+        public bool CanPlaceTower()
+        {
+            _isDecoyActive = _decoyTowers[_activeDecoyIndex].activeSelf;
+            return _isDecoyActive;
         }
 
     }
