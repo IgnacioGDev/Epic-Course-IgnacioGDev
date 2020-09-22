@@ -19,11 +19,6 @@ namespace Scripts
         private float _moneyLoot;
 
 
-
-        //Game Manager holds the reference for the endpoint -- DONE
-        //This class will request the gameManager reference -- DONE
-
-
         // Start is called before the first frame update
         void OnEnable()
         {
