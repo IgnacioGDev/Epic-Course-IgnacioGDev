@@ -29,6 +29,8 @@ namespace GameDevHQ.FileBase.Missle_Launcher
         //ADDED BY ME
         [SerializeField]
         private AttackRadius _attackRadius;
+        [SerializeField]
+        private GameObject _missileSupport;
 
         private void Update()
         {
@@ -64,10 +66,17 @@ namespace GameDevHQ.FileBase.Missle_Launcher
 
         public void Attack()
         {
-            if ( _attackRadius.IsRadiusActive() == true && _launched == false) //check for space key and if we launched the rockets
+            if (_attackRadius.IsRadiusActive() == true)
             {
-                _launched = true; //set the launch bool to true
-                StartCoroutine(FireRocketsRoutine()); //start a coroutine that fires the rockets. 
+                Vector3 direction = _attackRadius.GetEnemyPosition() - transform.position;
+                _missileSupport.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+                if (_launched == false) //check for space key and if we launched the rockets
+                {
+
+                    _launched = true; //set the launch bool to true
+                    StartCoroutine(FireRocketsRoutine()); //start a coroutine that fires the rockets. 
+                }
             }
         }
     }

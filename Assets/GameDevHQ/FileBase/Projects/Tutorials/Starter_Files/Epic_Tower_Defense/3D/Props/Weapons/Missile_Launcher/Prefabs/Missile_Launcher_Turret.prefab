@@ -873,7 +873,8 @@ MonoBehaviour:
   _fuseDelay: 0
   _reloadTime: 0
   _destroyTime: 10
-  _attackRadius: {fileID: 0}
+  _attackRadius: {fileID: 7848356470169898832}
+  _missileSupport: {fileID: 1365393933471856}
 --- !u!1 &1873951908610878
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +967,7 @@ GameObject:
   - component: {fileID: 4205858738221935084}
   - component: {fileID: 5951876877720634624}
   - component: {fileID: 3482585070863909260}
+  - component: {fileID: 7848356470169898832}
   m_Layer: 0
   m_Name: Attack Radius
   m_TagString: Untagged
@@ -1063,3 +1065,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7848356470169898832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112026966909021558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834246d2fd711cf4aaa41a225174a86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEnemyInRange: 0
+  _enemy: {fileID: 0}

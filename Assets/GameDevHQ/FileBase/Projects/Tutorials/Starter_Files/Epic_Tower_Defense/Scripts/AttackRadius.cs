@@ -10,27 +10,56 @@ namespace Scripts
         private bool _isEnemyInRange = false;
         [SerializeField]
         private GameObject _enemy;
+        [SerializeField]
+        private int _queueIndex = 0;
         private Vector3 _enemyPos;
+
+
+        //QUEUE
+        [SerializeField]
+        private List<GameObject> _enemiesInQueue;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Enemy"))
             {
                 _isEnemyInRange = true;
+
+
+                //FOR QUEUE
+                _enemiesInQueue.Add(other.gameObject);
+
+                foreach (var e in _enemiesInQueue)
+                {
+                    Debug.Log(e.name);
+                }
+
+                //Debug.Log("Enemy name: " + _enemiesInQueue[0].name);
             }
         }
 
         private void OnTriggerStay(Collider other)
         {
-            _enemy = GameObject.FindGameObjectWithTag("Enemy"); 
-            _enemyPos = _enemy.transform.position;
+            if (other.CompareTag("Enemy"))
+            {
+                //_enemy = GameObject.FindGameObjectWithTag("Enemy");
+                //_enemyPos = _enemy.transform.position;
+
+                _isEnemyInRange = true;
+                _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
+                
+
+            }
+            
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Enemy"))
             {
-                _isEnemyInRange = false;               
+                //_enemiesInQueue.Remove(other.gameObject);
+                _queueIndex++;
+                _isEnemyInRange = false;
             }
         }
 
