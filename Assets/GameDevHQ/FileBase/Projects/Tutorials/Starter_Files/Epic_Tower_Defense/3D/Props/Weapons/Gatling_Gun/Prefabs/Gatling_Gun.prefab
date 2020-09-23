@@ -110,7 +110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4483940257070060}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: -25.91101}
 --- !u!198 &198239830521320308
 ParticleSystem:
@@ -4941,7 +4941,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4230997169374272}
-  - {fileID: 4467111432530078}
   m_Father: {fileID: 4633165491543876}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4970,10 +4969,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210388328600386}
-  m_LocalRotation: {x: -0, y: -9.8607613e-32, z: -4.1037882e-26, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.29565015, y: 0.38314095, z: -0.22158031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4467111432530078}
   - {fileID: 4813843730394250}
   - {fileID: 4487937688588952}
   m_Father: {fileID: 4230997169374272}
@@ -5076,6 +5076,8 @@ MonoBehaviour:
   Muzzle_Flash: {fileID: 1905276477678454}
   bulletCasings: {fileID: 198239830521320308}
   fireSound: {fileID: 8300000, guid: 08e0cb88300e54b09aa0deb684c3a3de, type: 3}
+  _attackRadius: {fileID: 7149385498414812286}
+  _miniGunBase: {fileID: 1210388328600386}
 --- !u!82 &82825197453988258
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5361,7 +5363,7 @@ Transform:
   - {fileID: 4350790293061252}
   - {fileID: 4891192007684496}
   m_Father: {fileID: 4483940257070060}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1618551938405634
 GameObject:
@@ -5467,13 +5469,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905276477678454}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.14400001, y: 0.78152764, z: 2.7986846}
+  m_LocalRotation: {x: -3.0008306e-26, y: -0.7071068, z: -3.0008306e-26, w: 0.7071068}
+  m_LocalPosition: {x: 0.1474909, y: 0.11914596, z: 2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4477828785630856}
-  m_Father: {fileID: 4445333471610312}
-  m_RootOrder: 1
+  m_Father: {fileID: 4483940257070060}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!198 &198006838423099326
 ParticleSystem:
@@ -14981,7 +14983,7 @@ Transform:
   m_GameObject: {fileID: 373840917520268638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 4633165491543876}
   m_RootOrder: 2
@@ -15059,6 +15061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEnemyInRange: 0
+  _enemy: {fileID: 0}
 --- !u!54 &1528015297725553580
 Rigidbody:
   m_ObjectHideFlags: 0

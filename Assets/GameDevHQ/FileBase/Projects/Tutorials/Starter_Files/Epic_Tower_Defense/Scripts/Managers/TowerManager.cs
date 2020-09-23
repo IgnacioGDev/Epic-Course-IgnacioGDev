@@ -96,6 +96,7 @@ namespace Scripts.Managers
             if (Physics.Raycast(rayOrigin, out hitInfo))
             {
                 _decoyTowers[_activeDecoyIndex].transform.position = hitInfo.point;
+                Debug.Log(hitInfo.collider.name);
 
             }
         }

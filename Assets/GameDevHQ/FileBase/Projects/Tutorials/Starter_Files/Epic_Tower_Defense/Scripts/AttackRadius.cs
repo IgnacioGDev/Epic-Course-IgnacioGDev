@@ -2,40 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackRadius : MonoBehaviour
+namespace Scripts
 {
-    [SerializeField]
-    private bool _isEnemyInRange = false;
-    // Start is called before the first frame update
-    void Start()
+    public class AttackRadius : MonoBehaviour
     {
-        
-    }
+        [SerializeField]
+        private bool _isEnemyInRange = false;
+        [SerializeField]
+        private GameObject _enemy;
+        private Vector3 _enemyPos;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        private void OnTriggerEnter(Collider other)
         {
-            _isEnemyInRange = true;
+            if (other.CompareTag("Enemy"))
+            {
+                _isEnemyInRange = true;
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            _enemy = GameObject.FindGameObjectWithTag("Enemy"); 
+            _enemyPos = _enemy.transform.position;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                _isEnemyInRange = false;               
+            }
+        }
+
+        public bool IsRadiusActive()
+        {
+            return _isEnemyInRange;
+        }
+
+        public Vector3 GetEnemyPosition()
+        {
+            return _enemyPos;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _isEnemyInRange = false;
-        }
-    }
-
-    public bool IsRadiusActive()
-    {
-        return _isEnemyInRange;
-    }
 }
