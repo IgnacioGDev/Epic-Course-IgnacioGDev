@@ -19,6 +19,11 @@ namespace Scripts
         [SerializeField]
         private List<GameObject> _enemiesInQueue;
 
+        private void OnEnable()
+        {
+            EnemyAI.onDeath += RemoveEnemy;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Enemy"))
@@ -48,8 +53,7 @@ namespace Scripts
         {
             if (other.CompareTag("Enemy"))
             {
-                //_enemiesInQueue.Remove(other.gameObject);
-                _queueIndex++;
+                _enemiesInQueue.Remove(other.gameObject);
                 _isEnemyInRange = false;
             }
         }
@@ -62,6 +66,11 @@ namespace Scripts
         public Vector3 GetEnemyPosition()
         {
             return _enemyPos;
+        }
+
+        public void RemoveEnemy(GameObject enemy)
+        {
+            _enemiesInQueue.Remove(enemy);
         }
     }
 

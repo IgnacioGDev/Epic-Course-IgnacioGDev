@@ -44,18 +44,24 @@ namespace GameDevHQ.FileBase.Missle_Launcher
         {
             for (int i = 0; i < _misslePositions.Length; i++) //for loop to iterate through each missle position
             {
-                GameObject rocket = Instantiate(_missilePrefab) as GameObject; //instantiate a rocket
+                if (ReturnEnemyStatus() == true)
+                {
+                    GameObject rocket = Instantiate(_missilePrefab) as GameObject; //instantiate a rocket
 
-                rocket.transform.parent = _misslePositions[i].transform; //set the rockets parent to the missle launch position 
-                rocket.transform.localPosition = Vector3.zero; //set the rocket position values to zero
-                rocket.transform.localEulerAngles = new Vector3(-90, 0, 0); //set the rotation values to be properly aligned with the rockets forward direction
-                rocket.transform.parent = null; //set the rocket parent to null
+                    rocket.transform.parent = _misslePositions[i].transform; //set the rockets parent to the missle launch position 
+                    rocket.transform.localPosition = Vector3.zero; //set the rocket position values to zero
+                    rocket.transform.localEulerAngles = new Vector3(-90, 0, 0); //set the rotation values to be properly aligned with the rockets forward direction
+                    rocket.transform.parent = null; //set the rocket parent to null
 
-                rocket.GetComponent<GameDevHQ.FileBase.Missle_Launcher.Missle.Missle>().AssignMissleRules(_launchSpeed, _power, _fuseDelay, _destroyTime); //assign missle properties 
+                    rocket.GetComponent<GameDevHQ.FileBase.Missle_Launcher.Missle.Missle>().AssignMissleRules(_launchSpeed, _power, _fuseDelay, _destroyTime); //assign missle properties 
 
-                _misslePositions[i].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
+                    _misslePositions[i].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
 
-                yield return new WaitForSeconds(_fireDelay); //wait for the firedelay
+                    yield return new WaitForSeconds(_fireDelay); //wait for the firedelay
+
+                }
+
+                
             }
 
             for (int i = 0; i < _misslePositions.Length; i++) //itterate through missle positions

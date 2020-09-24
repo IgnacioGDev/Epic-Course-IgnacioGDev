@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Scripts.Managers;
 using GameDevHQ.FileBase.Missle_Launcher;
+using System;
 
 namespace Scripts
 {
@@ -24,6 +25,8 @@ namespace Scripts
         //Receiving Damage
         [SerializeField]
         private BoxCollider _boxCollider;
+
+        public static event Action<GameObject> onDeath;
 
 
         // Start is called before the first frame update
@@ -96,8 +99,14 @@ namespace Scripts
         {
             if (_hitPoints <= 0)
             {
-                this.gameObject.SetActive(false);
+                if (onDeath != null)
+                {
+                    onDeath(this.gameObject);
+                }
                 _enemyState = false;
+                this.gameObject.SetActive(false);
+
+                
             }
             
         }
