@@ -33,6 +33,7 @@ namespace Scripts
         void OnEnable()
         {
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
+            AttackRadius.onGatlingGunDamage += GatlingGunDamage;
 
             if (_navMeshAgent != null)
             {
@@ -50,7 +51,7 @@ namespace Scripts
                     _navMeshAgent.Warp(SpawnManager_ScriptableObjects.Instance.GetStartPos());
                     _destination = GameManager.Instance.GetEndZone();
                     EnemyDestination(_destination.transform.position);
-                } 
+                }
             }
         }
 
@@ -106,14 +107,29 @@ namespace Scripts
                 _enemyState = false;
                 this.gameObject.SetActive(false);
 
-                
+
             }
-            
+
         }
 
         public bool IsEnemyActive()
         {
             return _enemyState;
+        }
+
+        public void GatlingGunDamage(Vector3 pos)
+        {
+            if (_hitPoints >= 0 && transform.position == pos)
+            {
+                _hitPoints -= 0.5f * Time.deltaTime;
+            }
+
+        }
+
+        private void OnDisable()
+        {
+            Missle_Launcher.ReturnEnemyStatus -= IsEnemyActive;
+            AttackRadius.onGatlingGunDamage -= GatlingGunDamage;
         }
 
 

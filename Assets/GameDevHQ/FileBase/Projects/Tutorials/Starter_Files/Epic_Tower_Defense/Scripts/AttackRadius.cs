@@ -19,6 +19,8 @@ namespace Scripts
         [SerializeField]
         private List<GameObject> _enemiesInQueue;
 
+        public static event Action<Vector3> onGatlingGunDamage;
+
         private void OnEnable()
         {
             EnemyAI.onDeath += RemoveEnemy;
@@ -43,8 +45,11 @@ namespace Scripts
             {
                 _isEnemyInRange = true;
                 _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
-                //_enemy = GameObject.FindGameObjectWithTag("Enemy");
-                //_enemyPos = _enemy.transform.position;
+
+                if (onGatlingGunDamage != null)
+                {
+                    onGatlingGunDamage(_enemyPos);
+                }
             }
             
         }
