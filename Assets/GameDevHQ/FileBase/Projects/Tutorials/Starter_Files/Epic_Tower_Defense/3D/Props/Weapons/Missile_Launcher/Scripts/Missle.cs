@@ -91,6 +91,12 @@ namespace GameDevHQ.FileBase.Missle_Launcher.Missle
             _fuseDelay = fuseDelay; //set the fuse delay
             Destroy(this.gameObject, destroyTimer); //destroy the rocket after destroyTimer 
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("Enemy"))
+            Destroy(gameObject);
+        }
     }
 }
 

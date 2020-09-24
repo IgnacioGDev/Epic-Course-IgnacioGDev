@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Scripts.Managers;
+using GameDevHQ.FileBase.Missle_Launcher;
 
 namespace Scripts
 {
@@ -14,14 +15,22 @@ namespace Scripts
         [SerializeField]
         public Transform _destination;
         [SerializeField]
-        private float _hitPoints;
+        private float _hitPoints = 10;
         [SerializeField]
         private float _moneyLoot;
+        [SerializeField]
+        private bool _enemyState = true;
+
+        //Receiving Damage
+        [SerializeField]
+        private BoxCollider _boxCollider;
 
 
         // Start is called before the first frame update
         void OnEnable()
         {
+            Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
+
             if (_navMeshAgent != null)
             {
                 //_navMeshAgent.enabled = true;
@@ -40,7 +49,12 @@ namespace Scripts
                     EnemyDestination(_destination.transform.position);
                 } 
             }
-        }   
+        }
+
+        private void Update()
+        {
+            DestroyEnemy();
+        }
 
         public void EnemyDestination(Vector3 endPoint)
         {
@@ -66,6 +80,34 @@ namespace Scripts
             _destination = GameManager.Instance.GetEndZone();
             return _destination.transform.position;
         }
+
+        //FOR COLLISION WITH MISSILES OR TO TAKE DAMAGE
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Missile"))
+            {
+                Debug.Log("MISSILE DAMAGE DONE");
+                _hitPoints -= 5;
+
+            }
+        }
+
+        private void DestroyEnemy()
+        {
+            if (_hitPoints <= 0)
+            {
+                this.gameObject.SetActive(false);
+                _enemyState = false;
+            }
+            
+        }
+
+        public bool IsEnemyActive()
+        {
+            return _enemyState;
+        }
+
+
     }
 }
 

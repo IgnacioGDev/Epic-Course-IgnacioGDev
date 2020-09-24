@@ -15062,6 +15062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isEnemyInRange: 0
   _enemy: {fileID: 0}
+  _queueIndex: 0
+  _enemiesInQueue: []
 --- !u!54 &1528015297725553580
 Rigidbody:
   m_ObjectHideFlags: 0

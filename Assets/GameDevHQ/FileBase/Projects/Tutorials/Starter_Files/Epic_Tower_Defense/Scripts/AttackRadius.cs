@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ namespace Scripts
         private int _queueIndex = 0;
         private Vector3 _enemyPos;
 
-
         //QUEUE
         [SerializeField]
         private List<GameObject> _enemiesInQueue;
@@ -28,12 +28,6 @@ namespace Scripts
 
                 //FOR QUEUE
                 _enemiesInQueue.Add(other.gameObject);
-
-                foreach (var e in _enemiesInQueue)
-                {
-                    Debug.Log(e.name);
-                }
-
                 //Debug.Log("Enemy name: " + _enemiesInQueue[0].name);
             }
         }
@@ -42,13 +36,10 @@ namespace Scripts
         {
             if (other.CompareTag("Enemy"))
             {
-                //_enemy = GameObject.FindGameObjectWithTag("Enemy");
-                //_enemyPos = _enemy.transform.position;
-
                 _isEnemyInRange = true;
                 _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
-                
-
+                //_enemy = GameObject.FindGameObjectWithTag("Enemy");
+                //_enemyPos = _enemy.transform.position;
             }
             
         }
