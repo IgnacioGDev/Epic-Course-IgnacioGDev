@@ -9,14 +9,19 @@ namespace Scripts
     public class EndZoneTrigger : MonoBehaviour
     {
         public static event Action onEnemyReachedEnd;
+        public static event Action onWaveDestroyed;
+
+        private void OnEnable()
+        {
+            EnemyAI.onCheckingEnemiesDestroyed += CheckingEnemiesInWave;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("ENEMY DESTROYED");
-            //Destroy(other.gameObject);
+
             other.gameObject.SetActive(false);
-            //SpawnManager.Instance.OnEndZoneReach();
-            //SpawnManager.Instance._enemyCounter--;
+
             if (onEnemyReachedEnd != null)
             {
                 onEnemyReachedEnd();
@@ -40,16 +45,24 @@ namespace Scripts
             {
                 Debug.Log("WAVE YET TO BE FNISHED");
             }
-                
 
+        }
 
-            /* UTILIZAR EN CASO DE NECESIDAD AUXILIAR PARA REQUEST DE ARRIBA
-            if (SpawnManager_ScriptableObjects.Instance.GetCurrentEnemiesCount() >= SpawnManager_ScriptableObjects.Instance.GetCurrentWaveCount())
+        private void CheckingEnemiesInWave()
+        {
+            if (SpawnManager_ScriptableObjects.Instance.GetCurrentEnemiesCount() >= PoolManager.Instance.GetCurrentWaveCount())
             {
-                Debug.Log("Endzonetrigger//NEXT WAVE");
+                if (onWaveDestroyed != null)
+                {
+                    onWaveDestroyed();
+                }
+                Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
                 SpawnManager_ScriptableObjects.Instance.StartNextWave();
-            }*/
-
+            }
+            else
+            {
+                Debug.Log("WAVE YET TO BE FNISHED");
+            }
         }
     }
 

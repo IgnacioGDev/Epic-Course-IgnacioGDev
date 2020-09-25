@@ -37,6 +37,7 @@ namespace GameDevHQ.FileBase.Missle_Launcher
 
         private void Update()
         {
+            //_attackRadius.QueueNumber();
             Attack();
         }
 

@@ -37,6 +37,8 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         [SerializeField]
         private GameObject _miniGunBase;
 
+        public static Func<int> GetEnemiesInQueue;
+        public static Func<bool> ReturnEnemyStatus;
 
         // Use this for initialization
         void Start()
@@ -56,11 +58,12 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         // Update is called once per frame
         void Update()
         {
+
             Attack();
         }
 
         // Method to rotate gun barrel 
-        void RotateBarrel() 
+        void RotateBarrel()
         {
             _gunBarrel.transform.Rotate(Vector3.forward * Time.deltaTime * -500.0f); //rotate the gun barrel along the "forward" (z) axis at 500 meters per second
 
@@ -68,25 +71,28 @@ namespace GameDevHQ.FileBase.Gatling_Gun
 
         public void Attack()
         {
-            if (_attackRadius.IsRadiusActive() == true) //Check for left click (held) user input
+            if (GetEnemiesInQueue != null)
             {
-                Rotate();
-                RotateBarrel(); //Call the rotation function responsible for rotating our gun barrel
-                Muzzle_Flash.SetActive(true); //enable muzzle effect particle effect
-                bulletCasings.Emit(1); //Emit the bullet casing particle effect  
-
-                if (_startWeaponNoise == true) //checking if we need to start the gun sound
+                if (_attackRadius.IsRadiusActive() == true && ReturnEnemyStatus() == true)//Check for left click (held) user input
                 {
-                    _audioSource.Play(); //play audio clip attached to audio source
-                    _startWeaponNoise = false; //set the start weapon noise value to false to prevent calling it again
-                }
+                    Rotate();
+                    RotateBarrel(); //Call the rotation function responsible for rotating our gun barrel
+                    Muzzle_Flash.SetActive(true); //enable muzzle effect particle effect
+                    bulletCasings.Emit(1); //Emit the bullet casing particle effect  
 
-            }
-            else if (_attackRadius.IsRadiusActive() == false) //Check for left click (release) user input
-            {
-                Muzzle_Flash.SetActive(false); //turn off muzzle flash particle effect
-                _audioSource.Stop(); //stop the sound effect from playing
-                _startWeaponNoise = true; //set the start weapon noise value to true
+                    if (_startWeaponNoise == true) //checking if we need to start the gun sound
+                    {
+                        _audioSource.Play(); //play audio clip attached to audio source
+                        _startWeaponNoise = false; //set the start weapon noise value to false to prevent calling it again
+                    }
+
+                }
+                else if (_attackRadius.IsRadiusActive() == false || ReturnEnemyStatus() == false) //Check for left click (release) user input
+                {
+                    Muzzle_Flash.SetActive(false); //turn off muzzle flash particle effect
+                    _audioSource.Stop(); //stop the sound effect from playing
+                    _startWeaponNoise = true; //set the start weapon noise value to true
+                }
             }
         }
 

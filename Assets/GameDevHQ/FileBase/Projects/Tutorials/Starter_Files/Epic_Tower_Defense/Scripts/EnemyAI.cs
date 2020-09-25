@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using Scripts.Managers;
 using GameDevHQ.FileBase.Missle_Launcher;
 using System;
+using GameDevHQ.FileBase.Gatling_Gun;
 
 namespace Scripts
 {
@@ -21,19 +22,30 @@ namespace Scripts
         private float _moneyLoot;
         [SerializeField]
         private bool _enemyState = true;
+        [SerializeField]
+        private Animator _animator;
+
+        [SerializeField]
+        private bool _isAlive = true;
+
 
         //Receiving Damage
         [SerializeField]
         private BoxCollider _boxCollider;
 
         public static event Action<GameObject> onDeath;
+        public static event Action onCheckingEnemiesDestroyed;
 
 
         // Start is called before the first frame update
         void OnEnable()
         {
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
+            Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
+
+            _animator = GetComponent<Animator>();
+            _animator.SetBool("isDead", false);
 
             if (_navMeshAgent != null)
             {
@@ -57,6 +69,7 @@ namespace Scripts
 
         private void Update()
         {
+            Debug.Log("ENEMY STATUS: " + this.gameObject.activeSelf);
             DestroyEnemy();
         }
 
@@ -90,7 +103,6 @@ namespace Scripts
         {
             if (other.CompareTag("Missile"))
             {
-                Debug.Log("MISSILE DAMAGE DONE");
                 _hitPoints -= 5;
 
             }
@@ -98,17 +110,31 @@ namespace Scripts
 
         private void DestroyEnemy()
         {
-            if (_hitPoints <= 0)
+            if (_isAlive == true)
             {
-                if (onDeath != null)
+                if (_hitPoints <= 0)
                 {
-                    onDeath(this.gameObject);
+                    _animator.SetBool("isDead", true);
+
+                    if (onDeath != null)
+                    {
+                        onDeath(this.gameObject);
+                    }
+                    _enemyState = false;
+                    //this.gameObject.SetActive(false);
+
+                    _navMeshAgent.SetDestination(transform.position);
+                    StartCoroutine(DisableEnemy());
+                    SpawnManager_ScriptableObjects.Instance.AmountOfEnemiesDestroyed();
+                    if (onCheckingEnemiesDestroyed != null)
+                    {
+                        onCheckingEnemiesDestroyed();
+                    }
+                    _isAlive = false;
                 }
-                _enemyState = false;
-                this.gameObject.SetActive(false);
-
-
             }
+
+
 
         }
 
@@ -124,6 +150,12 @@ namespace Scripts
                 _hitPoints -= 0.5f * Time.deltaTime;
             }
 
+        }
+
+        IEnumerator DisableEnemy()
+        {
+            yield return new WaitForSeconds(5f);
+            this.gameObject.SetActive(false);
         }
 
         private void OnDisable()

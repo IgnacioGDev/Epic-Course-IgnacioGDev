@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameDevHQ.FileBase.Gatling_Gun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,6 @@ namespace Scripts
         [SerializeField]
         private bool _isEnemyInRange = false;
         [SerializeField]
-        private GameObject _enemy;
-        [SerializeField]
         private int _queueIndex = 0;
         private Vector3 _enemyPos;
 
@@ -20,10 +19,13 @@ namespace Scripts
         private List<GameObject> _enemiesInQueue;
 
         public static event Action<Vector3> onGatlingGunDamage;
+        public static Func<bool> ReturnEnemyStatus;
 
         private void OnEnable()
         {
+            Gatling_Gun.GetEnemiesInQueue += QueueNumber;
             EnemyAI.onDeath += RemoveEnemy;
+            EndZoneTrigger.onWaveDestroyed += ResetRadiusRange;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -41,17 +43,22 @@ namespace Scripts
 
         private void OnTriggerStay(Collider other)
         {
+            QueueNumber();
             if (other.CompareTag("Enemy"))
             {
-                _isEnemyInRange = true;
-                _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
+                //_isEnemyInRange = true;
 
-                if (onGatlingGunDamage != null)
+                if (_enemiesInQueue.Count > 0)
                 {
-                    onGatlingGunDamage(_enemyPos);
+                    _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
+
+                    if (onGatlingGunDamage != null)
+                    {
+                        onGatlingGunDamage(_enemyPos);
+                    }
                 }
             }
-            
+
         }
 
         private void OnTriggerExit(Collider other)
@@ -76,6 +83,16 @@ namespace Scripts
         public void RemoveEnemy(GameObject enemy)
         {
             _enemiesInQueue.Remove(enemy);
+        }
+
+        public void ResetRadiusRange()
+        {
+            _isEnemyInRange = false;
+        }
+
+        public int QueueNumber()
+        {
+            return _enemiesInQueue.Count;
         }
     }
 
