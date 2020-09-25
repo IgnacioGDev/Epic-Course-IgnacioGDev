@@ -38,6 +38,11 @@ namespace Scripts
         [SerializeField]
         private ParticleSystem _expMissilParticle;
 
+        [SerializeField]
+        private GameObject _sparks;
+        [SerializeField]
+        private ParticleSystem _spksParticle;
+
         //Receiving Damage
         [SerializeField]
         private BoxCollider _boxCollider;
@@ -52,9 +57,11 @@ namespace Scripts
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
+            AttackRadius.onGatlingGunFX += GatlingGunFX;
 
             _explotionParticle.Stop();
             _expMissilParticle.Stop();
+            _spksParticle.Stop();
 
             _animator = GetComponent<Animator>();
             _animator.SetBool("isDead", false);
@@ -81,6 +88,7 @@ namespace Scripts
 
         private void Update()
         {
+            
             Debug.Log("ENEMY STATUS: " + this.gameObject.activeSelf);
             DestroyEnemy();
         }
@@ -150,6 +158,7 @@ namespace Scripts
                     //this.gameObject.SetActive(false);
 
                     _navMeshAgent.SetDestination(transform.position);
+                    
                     StartCoroutine(DisableEnemy());
                     SpawnManager_ScriptableObjects.Instance.AmountOfEnemiesDestroyed();
                     if (onCheckingEnemiesDestroyed != null)
@@ -173,6 +182,7 @@ namespace Scripts
         {
             if (_hitPoints >= 0 && transform.position == pos)
             {
+                
                 _hitPoints -= 0.5f * Time.deltaTime;
             }
 
@@ -188,6 +198,11 @@ namespace Scripts
         {
             Missle_Launcher.ReturnEnemyStatus -= IsEnemyActive;
             AttackRadius.onGatlingGunDamage -= GatlingGunDamage;
+        }
+
+        public void GatlingGunFX()
+        {
+            _spksParticle.Play();
         }
 
 

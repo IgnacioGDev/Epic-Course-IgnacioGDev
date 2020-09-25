@@ -1594,6 +1594,8 @@ MonoBehaviour:
   _explotionParticle: {fileID: 9154787674491584942}
   _expMissile: {fileID: 3286606695965671420}
   _expMissilParticle: {fileID: 3286606695965671422}
+  _sparks: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
+  _spksParticle: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
   _boxCollider: {fileID: 0}
 --- !u!65 &7235371119175287199
 BoxCollider:

@@ -32080,6 +32080,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318163310420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32108,6 +32109,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318237236826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32136,6 +32138,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318352287006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32164,6 +32167,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318379304769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32192,6 +32196,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318686477960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32220,6 +32225,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318718463520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32248,6 +32254,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764318935897149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32276,6 +32283,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319388809584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32304,6 +32312,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319450564955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32332,6 +32341,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319457276202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32360,6 +32370,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319660805096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32388,6 +32399,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319726185117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32416,6 +32428,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319761136775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32444,6 +32457,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319800682102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32472,6 +32486,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!114 &114764319881467765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32500,6 +32515,7 @@ MonoBehaviour:
   _reloadTime: 0
   _destroyTime: 10
   _attackRadius: {fileID: 0}
+  _missileSupport: {fileID: 0}
 --- !u!198 &1257589683551822241
 ParticleSystem:
   m_ObjectHideFlags: 0
