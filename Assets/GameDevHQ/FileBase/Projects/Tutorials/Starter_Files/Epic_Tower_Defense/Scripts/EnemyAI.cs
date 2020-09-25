@@ -28,6 +28,15 @@ namespace Scripts
         [SerializeField]
         private bool _isAlive = true;
 
+        [SerializeField]
+        private GameObject _explotion;
+        [SerializeField]
+        private ParticleSystem _explotionParticle;
+
+        [SerializeField]
+        private GameObject _expMissile;
+        [SerializeField]
+        private ParticleSystem _expMissilParticle;
 
         //Receiving Damage
         [SerializeField]
@@ -43,6 +52,9 @@ namespace Scripts
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
+
+            _explotionParticle.Stop();
+            _expMissilParticle.Stop();
 
             _animator = GetComponent<Animator>();
             _animator.SetBool("isDead", false);
@@ -104,6 +116,12 @@ namespace Scripts
             if (other.CompareTag("Missile"))
             {
                 _hitPoints -= 5;
+                //Instantiate(_expMissile, transform.position, Quaternion.identity);
+                //if (_expMissilParticle.isPlaying == false)
+                //{
+                //    Destroy(_expMissile, 4f);
+                //}
+                _expMissilParticle.Play();
 
             }
         }
@@ -114,6 +132,14 @@ namespace Scripts
             {
                 if (_hitPoints <= 0)
                 {
+                    //var expEffect = (GameObject) Instantiate(_explotion, transform.position + new Vector3(0,2f,0), Quaternion.identity);
+                    //if (_explotionParticle.isPlaying == false)
+                    //{
+                    //    Destroy(expEffect, 4f);
+                    //}
+
+                    _explotionParticle.Play();
+
                     _animator.SetBool("isDead", true);
 
                     if (onDeath != null)
