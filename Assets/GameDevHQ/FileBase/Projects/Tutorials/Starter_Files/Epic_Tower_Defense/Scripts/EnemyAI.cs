@@ -54,6 +54,8 @@ namespace Scripts
         // Start is called before the first frame update
         void OnEnable()
         {
+            _boxCollider = GetComponent<BoxCollider>();
+
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
@@ -86,9 +88,11 @@ namespace Scripts
             }
         }
 
+
+
         private void Update()
         {
-            
+            //GatlingGunFX();
             Debug.Log("ENEMY STATUS: " + this.gameObject.activeSelf);
             DestroyEnemy();
         }
@@ -145,7 +149,15 @@ namespace Scripts
                     //{
                     //    Destroy(expEffect, 4f);
                     //}
-
+                    if (_boxCollider != null)
+                    {
+                        _boxCollider.enabled = false;
+                    }
+                    if (_navMeshAgent != null)
+                    {
+                        _navMeshAgent.enabled = false;
+                    }
+                    
                     _explotionParticle.Play();
 
                     _animator.SetBool("isDead", true);
@@ -157,7 +169,7 @@ namespace Scripts
                     _enemyState = false;
                     //this.gameObject.SetActive(false);
 
-                    _navMeshAgent.SetDestination(transform.position);
+                    //_navMeshAgent.SetDestination(transform.position);
                     
                     StartCoroutine(DisableEnemy());
                     SpawnManager_ScriptableObjects.Instance.AmountOfEnemiesDestroyed();
@@ -202,7 +214,11 @@ namespace Scripts
 
         public void GatlingGunFX()
         {
-            _spksParticle.Play();
+            if (_spksParticle != null)
+            {
+                _spksParticle.Play();
+            }
+            
         }
 
 
