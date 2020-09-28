@@ -43,6 +43,11 @@ namespace Scripts.Managers
             _instance = this;
         }
 
+        private void OnEnable()
+        {
+            UIManager.onGatlingClick += TowerUnderMouseMovement;
+        }
+
 
         // Update is called once per frame
         void Update()
@@ -99,6 +104,7 @@ namespace Scripts.Managers
             }
         }
 
+
         public void SnapToPosition(Vector3 spotPos)
         {        
             _decoyTowers[_activeDecoyIndex].transform.position = spotPos;
@@ -121,6 +127,21 @@ namespace Scripts.Managers
         {
             _isDecoyActive = _decoyTowers[_activeDecoyIndex].activeSelf;
             return _isDecoyActive;
+        }
+
+        public void GatlingGunCursor()
+        {
+            //Enable decoy gatling gun
+            //_decoyTowers[0].SetActive(true);
+            //_decoyTowers[1].SetActive(false);
+            //_activeDecoyIndex = 0;
+
+            //if (onPlacingTowers != null)
+            //{
+            //    onPlacingTowers();
+            //}
+
+            Debug.Log("SADHFISDJFKASDJFASDJFKASDJFKLASJDLFKASJDKFLAJSDKLFJASDF");
         }
 
     }

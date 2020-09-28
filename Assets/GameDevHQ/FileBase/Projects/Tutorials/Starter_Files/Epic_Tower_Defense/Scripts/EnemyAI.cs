@@ -38,10 +38,10 @@ namespace Scripts
         [SerializeField]
         private ParticleSystem _expMissilParticle;
 
-        [SerializeField]
-        private GameObject _sparks;
-        [SerializeField]
-        private ParticleSystem _spksParticle;
+        //[SerializeField]
+        //private GameObject _sparks;
+        //[SerializeField]
+        //private ParticleSystem _spksParticle;
 
         //Receiving Damage
         [SerializeField]
@@ -59,11 +59,11 @@ namespace Scripts
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
-            AttackRadius.onGatlingGunFX += GatlingGunFX;
+            //AttackRadius.onGatlingGunFX += GatlingGunFX;
 
             _explotionParticle.Stop();
             _expMissilParticle.Stop();
-            _spksParticle.Stop();
+            //_spksParticle.Stop();
 
             _animator = GetComponent<Animator>();
             _animator.SetBool("isDead", false);
@@ -212,14 +212,14 @@ namespace Scripts
             AttackRadius.onGatlingGunDamage -= GatlingGunDamage;
         }
 
-        public void GatlingGunFX()
-        {
-            if (_spksParticle != null)
-            {
-                _spksParticle.Play();
-            }
+        //public void GatlingGunFX()
+        //{
+        //    if (_spksParticle != null)
+        //    {
+        //        _spksParticle.Play();
+        //    }
             
-        }
+        //}
 
 
     }
