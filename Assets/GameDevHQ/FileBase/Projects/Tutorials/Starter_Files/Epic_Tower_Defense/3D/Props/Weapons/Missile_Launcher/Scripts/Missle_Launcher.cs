@@ -35,6 +35,11 @@ namespace GameDevHQ.FileBase.Missle_Launcher
 
         public static Func<bool> ReturnEnemyStatus;
 
+        private void OnEnable()
+        {
+            TowerPositionController.onSelectingTower += GetTowerName;
+        }
+
         private void Update()
         {
             //_attackRadius.QueueNumber();
@@ -91,6 +96,11 @@ namespace GameDevHQ.FileBase.Missle_Launcher
                     }
                 }
             }
+        }
+
+        public string GetTowerName()
+        {
+            return gameObject.name;
         }
     }
 }

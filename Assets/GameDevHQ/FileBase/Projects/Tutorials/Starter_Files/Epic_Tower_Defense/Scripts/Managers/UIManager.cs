@@ -24,9 +24,13 @@ namespace Scripts.Managers
         [SerializeField]
         private int _towerSelected = 0;
         [SerializeField]
-        private string _buttonName;
+        private Image _gatlingImage;
+        [SerializeField]
+        private Image _missile;
 
-        public static event Action onGatlingClick;
+        public static event Func<string> OnTowerSelected;
+
+        //public static event Action onGatlingClick;
 
         private void OnEnable()
         {
@@ -52,12 +56,22 @@ namespace Scripts.Managers
             //{
             //    onGatlingClick();
             //}
+            if (OnTowerSelected != null)
+            {
+                if (OnTowerSelected() != "Gatling_Gun(Clone)")
+                {
+                    Debug.Log("UI MANAGER // GATLING GUN");
+
+                }
+                if (OnTowerSelected() != "Missile_Launcher_Turret(Clone)")
+                {
+                    Debug.Log("UI MANAGER // MISSILE LAUCHER");
+                }
+            }
         }
 
         public void SelectTower(Button btn)
         {
-            _buttonName = btn.name;
-
             if (btn.name == "Gatling")
             {
                 _towerSelected = 1;

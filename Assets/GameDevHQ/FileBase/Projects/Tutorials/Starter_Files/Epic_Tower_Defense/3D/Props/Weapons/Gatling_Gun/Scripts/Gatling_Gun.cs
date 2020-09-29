@@ -40,6 +40,12 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         public static Func<int> GetEnemiesInQueue;
         public static Func<bool> ReturnEnemyStatus;
 
+        private void OnEnable()
+        {
+            TowerPositionController.onSelectingTower += GetTowerName;
+        }
+
+
         // Use this for initialization
         void Start()
         {
@@ -101,6 +107,10 @@ namespace GameDevHQ.FileBase.Gatling_Gun
             Vector3 direction = _attackRadius.GetEnemyPosition() - transform.position;
             _miniGunBase.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
             //Muzzle_Flash.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        }
+        public string GetTowerName()
+        {
+            return gameObject.name;
         }
     }
 

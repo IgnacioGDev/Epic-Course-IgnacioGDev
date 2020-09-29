@@ -56,6 +56,7 @@ namespace Scripts
         {
             _boxCollider = GetComponent<BoxCollider>();
 
+
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
@@ -218,9 +219,8 @@ namespace Scripts
         //    {
         //        _spksParticle.Play();
         //    }
-            
-        //}
 
+        //}
 
     }
 }

@@ -14,12 +14,14 @@ namespace Scripts
         private GameObject _particle;
 
         public static event Action onBuyingTower;
+        public static Func<string> onSelectingTower;
 
         private void OnEnable()
         {
             _particle.SetActive(false);
             TowerManager.onPlacingTowers += TowerManager_onPlacingTowers;
             TowerManager.onPlacingTowersFinished += TurnOffParticles;
+            UIManager.OnTowerSelected += GetTowerName;
         }
 
         private void TowerManager_onPlacingTowers()
@@ -55,6 +57,13 @@ namespace Scripts
                 _isAvailable = false;
                 _particle.SetActive(false);
             }
+
+            if (onSelectingTower != null)
+            {
+
+                Debug.Log(onSelectingTower());
+            }
+
         }
 
         private void OnMouseExit()
@@ -73,6 +82,11 @@ namespace Scripts
         {
             TowerManager.onPlacingTowers -= TowerManager_onPlacingTowers;
             TowerManager.onPlacingTowersFinished -= TurnOffParticles;
+        }
+
+        public string GetTowerName()
+        {
+            return onSelectingTower();
         }
 
     }
