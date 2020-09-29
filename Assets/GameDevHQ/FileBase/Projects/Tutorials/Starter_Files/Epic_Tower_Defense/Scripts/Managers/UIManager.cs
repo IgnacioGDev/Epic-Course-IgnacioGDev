@@ -24,9 +24,7 @@ namespace Scripts.Managers
         [SerializeField]
         private int _towerSelected = 0;
         [SerializeField]
-        private Image _gatlingImage;
-        [SerializeField]
-        private Image _missile;
+        private GameObject _upgradeSprite;
 
         public static event Func<string> OnTowerSelected;
 
@@ -40,34 +38,6 @@ namespace Scripts.Managers
         private void Awake()
         {
             _instance = this;
-        }
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            //if (onGatlingClick != null)
-            //{
-            //    onGatlingClick();
-            //}
-            if (OnTowerSelected != null)
-            {
-                if (OnTowerSelected() != "Gatling_Gun(Clone)")
-                {
-                    Debug.Log("UI MANAGER // GATLING GUN");
-
-                }
-                if (OnTowerSelected() != "Missile_Launcher_Turret(Clone)")
-                {
-                    Debug.Log("UI MANAGER // MISSILE LAUCHER");
-                }
-            }
         }
 
         public void SelectTower(Button btn)
@@ -90,6 +60,12 @@ namespace Scripts.Managers
         public int GetItemPicked()
         {
             return _towerSelected;
+        }
+
+        public void ActivateUpgrade()
+        {
+            _upgradeSprite.SetActive(true);
+
         }
     }
 }

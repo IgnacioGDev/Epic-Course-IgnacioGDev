@@ -14967,7 +14967,7 @@ GameObject:
   - component: {fileID: 2388709166996934209}
   - component: {fileID: 7149385498414812286}
   - component: {fileID: 1528015297725553580}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15061,7 +15061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEnemyInRange: 0
-  _enemy: {fileID: 0}
   _queueIndex: 0
   _enemiesInQueue: []
 --- !u!54 &1528015297725553580

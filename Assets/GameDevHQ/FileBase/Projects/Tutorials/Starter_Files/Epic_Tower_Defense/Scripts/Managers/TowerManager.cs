@@ -125,9 +125,9 @@ namespace Scripts.Managers
             _towerRadius[_activeDecoyIndex].material.color = Color.red;
         }
 
-        public void PlaceTower(Vector3 spotPos)
+        public GameObject PlaceTower(Vector3 spotPos)
         {
-            Instantiate(_towerPrefabs[_activeDecoyIndex], spotPos, Quaternion.identity);
+            return Instantiate(_towerPrefabs[_activeDecoyIndex], spotPos, Quaternion.identity);
         }
 
         public bool CanPlaceTower()

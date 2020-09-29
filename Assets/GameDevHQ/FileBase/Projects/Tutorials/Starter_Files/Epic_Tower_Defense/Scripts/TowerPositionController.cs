@@ -12,6 +12,8 @@ namespace Scripts
         private bool _isAvailable = true;
         [SerializeField]
         private GameObject _particle;
+        [SerializeField]
+        private GameObject _currentTower;
 
         public static event Action onBuyingTower;
         public static Func<string> onSelectingTower;
@@ -35,7 +37,7 @@ namespace Scripts
 
         private void OnMouseEnter()
         {
-            if (_isAvailable == true )
+            if (_isAvailable == true)
             {
                 //Snap to position
                 //Tuen radius green
@@ -53,16 +55,25 @@ namespace Scripts
                     onBuyingTower();
                 }
 
-                TowerManager.Instance.PlaceTower(transform.position);
+                _currentTower = TowerManager.Instance.PlaceTower(transform.position);
                 _isAvailable = false;
                 _particle.SetActive(false);
             }
+            else
+            {
+                //this is called when try to upgrade
+                //display upgrade UI
+                UIManager.Instance.ActivateUpgrade();
+
+            }
+
 
             if (onSelectingTower != null)
             {
 
                 Debug.Log(onSelectingTower());
             }
+            
 
         }
 
