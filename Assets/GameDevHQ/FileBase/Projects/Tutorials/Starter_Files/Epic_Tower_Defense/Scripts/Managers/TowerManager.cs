@@ -36,6 +36,7 @@ namespace Scripts.Managers
         private bool _isDecoyActive = false;
         public static event Action onPlacingTowers;
         public static event Action onPlacingTowersFinished;
+        public static event Action onCancelTowers;
 
 
         private void Awake()
@@ -45,12 +46,19 @@ namespace Scripts.Managers
 
         private void OnEnable()
         {
-            UIManager.onGatlingClick += TowerUnderMouseMovement;
+            
         }
 
 
         // Update is called once per frame
         void Update()
+        {
+            InstantiateTowersDeprecated();
+            InstantiateTowers(UIManager.Instance.GetItemPicked());
+
+        }
+
+        private void InstantiateTowersDeprecated()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) //Gatling gun 
             {
@@ -62,7 +70,7 @@ namespace Scripts.Managers
                 if (onPlacingTowers != null)
                 {
                     onPlacingTowers();
-                }                   
+                }
 
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) //Missile launcher
@@ -87,10 +95,9 @@ namespace Scripts.Managers
 
 
             if (_canPlaceTower == false)
-            { 
+            {
                 TowerUnderMouseMovement();
             }
-   
         }
 
         private void TowerUnderMouseMovement()
@@ -129,19 +136,50 @@ namespace Scripts.Managers
             return _isDecoyActive;
         }
 
-        public void GatlingGunCursor()
+        private void InstantiateTowers(int towerID)
         {
-            //Enable decoy gatling gun
-            //_decoyTowers[0].SetActive(true);
-            //_decoyTowers[1].SetActive(false);
-            //_activeDecoyIndex = 0;
+            if (towerID == 1) //Gatling gun 
+            {
+                //Enable decoy gatling gun
+                _decoyTowers[0].SetActive(true);
+                _decoyTowers[1].SetActive(false);
+                _activeDecoyIndex = 0;
 
-            //if (onPlacingTowers != null)
-            //{
-            //    onPlacingTowers();
-            //}
+                if (onPlacingTowers != null)
+                {
+                    onPlacingTowers();
+                }
 
-            Debug.Log("SADHFISDJFKASDJFASDJFKASDJFKLASJDLFKASJDKFLAJSDKLFJASDF");
+            }
+            if (towerID == 2) //Missile launcher
+            {
+                //Enable decoy missile launcher
+                _decoyTowers[0].SetActive(false);
+                _decoyTowers[1].SetActive(true);
+                _activeDecoyIndex = 1;
+
+                if (onPlacingTowers != null)
+                    onPlacingTowers();
+
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+            {
+                _decoyTowers[_activeDecoyIndex].SetActive(false);
+                if (onPlacingTowersFinished != null)
+                {
+                    onPlacingTowersFinished();
+                }
+                if (onCancelTowers != null)
+                {
+                    onCancelTowers();
+                }
+            }
+
+
+            if (_canPlaceTower == false)
+            {
+                TowerUnderMouseMovement();
+            }
         }
 
     }

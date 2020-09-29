@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 namespace Scripts.Managers
 {
@@ -20,8 +21,17 @@ namespace Scripts.Managers
             }
         }
 
+        [SerializeField]
+        private int _towerSelected = 0;
+        [SerializeField]
+        private string _buttonName;
 
         public static event Action onGatlingClick;
+
+        private void OnEnable()
+        {
+            TowerManager.onCancelTowers += CancelTowers;
+        }
 
         private void Awake()
         {
@@ -42,6 +52,30 @@ namespace Scripts.Managers
             //{
             //    onGatlingClick();
             //}
+        }
+
+        public void SelectTower(Button btn)
+        {
+            _buttonName = btn.name;
+
+            if (btn.name == "Gatling")
+            {
+                _towerSelected = 1;
+            }
+            if (btn.name == "Missile")
+            {
+                _towerSelected = 2;
+            }            
+        }
+
+        public void CancelTowers()
+        {
+            _towerSelected = 0;
+        }
+
+        public int GetItemPicked()
+        {
+            return _towerSelected;
         }
     }
 }
