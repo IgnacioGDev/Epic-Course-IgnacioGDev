@@ -37,7 +37,7 @@ namespace GameDevHQ.FileBase.Missle_Launcher
 
         private void OnEnable()
         {
-            TowerPositionController.onSelectingTower += GetTowerName;
+
         }
 
         private void Update()
@@ -96,11 +96,6 @@ namespace GameDevHQ.FileBase.Missle_Launcher
                     }
                 }
             }
-        }
-
-        public string GetTowerName()
-        {
-            return gameObject.name;
         }
     }
 }

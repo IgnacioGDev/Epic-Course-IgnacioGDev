@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Scripts.Managers
 {
@@ -31,6 +32,7 @@ namespace Scripts.Managers
         private Text _inGameFunds;
         private float _warFunds;
 
+        public static event Func<int> OnSellingTower;
 
         //Singleton instantiation
         private void Awake()
@@ -74,8 +76,15 @@ namespace Scripts.Managers
             {
                 Debug.Log("NOT ENOUGH WAR FUNDS");
             }
-            
 
+        }
+
+        public void AddWarFunds()
+        {
+            if (OnSellingTower != null)
+            {
+                _warFunds += OnSellingTower();
+            }
         }
 
         private void OnDisable()

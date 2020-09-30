@@ -42,7 +42,6 @@ namespace GameDevHQ.FileBase.Gatling_Gun
 
         private void OnEnable()
         {
-            TowerPositionController.onSelectingTower += GetTowerName;
         }
 
 
@@ -108,10 +107,7 @@ namespace GameDevHQ.FileBase.Gatling_Gun
             _miniGunBase.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
             //Muzzle_Flash.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }
-        public string GetTowerName()
-        {
-            return gameObject.name;
-        }
+
     }
 
 }

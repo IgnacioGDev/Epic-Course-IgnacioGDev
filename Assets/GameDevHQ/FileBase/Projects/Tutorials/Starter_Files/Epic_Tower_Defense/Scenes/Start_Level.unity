@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6397993, g: 0.6132891, b: 0.62881947, a: 1}
+  m_IndirectSpecularColor: {r: 0.6275672, g: 0.60493606, b: 0.6218419, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -442,7 +442,7 @@ RectTransform:
   m_GameObject: {fileID: 46770128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0}
   m_Children:
   - {fileID: 1574409125}
   - {fileID: 487465906}
@@ -451,7 +451,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 582, y: 582}
+  m_AnchoredPosition: {x: -146, y: 133}
   m_SizeDelta: {x: 658, y: 219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &46770130
@@ -2610,6 +2610,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1633517178}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &260365785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2753,6 +2756,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1254422808}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &284333871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4217,6 +4223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 501773668}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &592720668
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,7 +4346,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerSelected: 0
-  _upgradeSprite: {fileID: 1364565713}
+  _gatlingGunUpgradeSprite: {fileID: 1364565713}
+  _missilieUpgradeSprite: {fileID: 46770128}
+  _gatlingGunSpriteButton: {fileID: 150529098}
+  _missileSpriteButton: {fileID: 1416097948}
+  _sellSpriteButton: {fileID: 1624499973}
 --- !u!1001 &595690249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4856,6 +4869,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1640625140}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &677102450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5478,18 +5494,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 63554698}
   _currentTower: {fileID: 0}
---- !u!114 &793808206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793808202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0351178144e0eda47b79135c77158664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &806446188
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,6 +5545,146 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &822710318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822710319}
+  - component: {fileID: 822710322}
+  - component: {fileID: 822710321}
+  - component: {fileID: 822710320}
+  m_Layer: 5
+  m_Name: Sell Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &822710319
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822710318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1624499974}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -160, y: -58}
+  m_SizeDelta: {x: 70, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &822710320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822710318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 2
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 822710321}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 592720673}
+        m_MethodName: DismantleTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1708022562}
+        m_MethodName: AddWarFunds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &822710321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822710318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.11372549}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &822710322
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822710318}
+  m_CullTransparentMesh: 0
 --- !u!1001 &823952689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5855,6 +6002,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1172412842}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &844408573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7637,18 +7787,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 143100870}
   _currentTower: {fileID: 0}
---- !u!114 &1098042160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098042156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0351178144e0eda47b79135c77158664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1109579365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9241,6 +9382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 177886874}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &1316289878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
@@ -9280,6 +9424,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 677620406}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1320956505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9733,7 +9880,7 @@ RectTransform:
   m_GameObject: {fileID: 1364565713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0}
   m_Children:
   - {fileID: 1872218050}
   - {fileID: 2128074888}
@@ -9742,7 +9889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 583}
+  m_AnchoredPosition: {x: -139, y: 133}
   m_SizeDelta: {x: 590, y: 216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364565715
@@ -12637,7 +12784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1624499974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12652,12 +12799,13 @@ RectTransform:
   - {fileID: 1700177797}
   - {fileID: 1586007435}
   - {fileID: 1596089905}
+  - {fileID: 822710319}
   m_Father: {fileID: 592720672}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 153, y: 121}
+  m_AnchoredPosition: {x: 162, y: 121}
   m_SizeDelta: {x: 580, y: 272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624499975
@@ -12980,18 +13128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1550752337}
   _currentTower: {fileID: 0}
---- !u!114 &1665867528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665867524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0351178144e0eda47b79135c77158664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &1670480421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1420464823686144776, guid: 6fb2616584c492b488bd60a3a0291bd5,
@@ -13031,6 +13170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1957973806}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1681217756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13369,6 +13511,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 652394419}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1 &1706649505
 GameObject:
   m_ObjectHideFlags: 0
@@ -13707,6 +13852,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1204052952}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1729764490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13986,6 +14134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 97860730}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1811507699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15366,6 +15517,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 362608019}
   _currentTower: {fileID: 0}
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &1998799965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15678,18 +15832,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 1227424954}
   _currentTower: {fileID: 0}
---- !u!114 &2013231987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013231983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0351178144e0eda47b79135c77158664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _currentTowerName: 
+  _isSpotSelected: 0
+  _towerCostRefund: 0
 --- !u!1001 &2043613014
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,9 +24,18 @@ namespace Scripts.Managers
         [SerializeField]
         private int _towerSelected = 0;
         [SerializeField]
-        private GameObject _upgradeSprite;
+        private GameObject _gatlingGunUpgradeSprite;
+        [SerializeField]
+        private GameObject _missilieUpgradeSprite;
+        [SerializeField]
+        private GameObject _gatlingGunSpriteButton;
+        [SerializeField]
+        private GameObject _missileSpriteButton;
+        [SerializeField]
+        private GameObject _sellSpriteButton;
 
         public static event Func<string> OnTowerSelected;
+        public static event Action OnDismantlingTower;
 
         //public static event Action onGatlingClick;
 
@@ -49,8 +58,17 @@ namespace Scripts.Managers
             if (btn.name == "Missile")
             {
                 _towerSelected = 2;
-            }            
+            }
         }
+
+        public void DismantleTower()
+        {
+            if (OnDismantlingTower != null)
+            {
+                OnDismantlingTower();
+            }           
+        }
+
 
         public void CancelTowers()
         {
@@ -62,10 +80,23 @@ namespace Scripts.Managers
             return _towerSelected;
         }
 
-        public void ActivateUpgrade()
+        public void ActivateUpgradeGatlingGun()
         {
-            _upgradeSprite.SetActive(true);
+            _gatlingGunUpgradeSprite.SetActive(true);
+            _missilieUpgradeSprite.SetActive(false);
+            _sellSpriteButton.SetActive(true);
+            _gatlingGunSpriteButton.SetActive(false);
+            _missileSpriteButton.SetActive(false);
 
+        }
+
+        public void ActivateUpgradeMissile()
+        {
+            _missilieUpgradeSprite.SetActive(true);
+            _gatlingGunUpgradeSprite.SetActive(false);
+            _sellSpriteButton.SetActive(true);
+            _gatlingGunSpriteButton.SetActive(false);
+            _missileSpriteButton.SetActive(false);
         }
     }
 }

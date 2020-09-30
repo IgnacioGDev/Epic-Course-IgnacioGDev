@@ -94,7 +94,6 @@ namespace Scripts
         private void Update()
         {
             //GatlingGunFX();
-            Debug.Log("ENEMY STATUS: " + this.gameObject.activeSelf);
             DestroyEnemy();
         }
 

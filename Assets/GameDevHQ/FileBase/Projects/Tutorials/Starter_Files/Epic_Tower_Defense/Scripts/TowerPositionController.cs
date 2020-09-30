@@ -14,6 +14,12 @@ namespace Scripts
         private GameObject _particle;
         [SerializeField]
         private GameObject _currentTower;
+        [SerializeField]
+        private string _currentTowerName;
+        [SerializeField]
+        private bool _isSpotSelected = false;
+        [SerializeField]
+        private int _towerCostRefund;
 
         public static event Action onBuyingTower;
         public static Func<string> onSelectingTower;
@@ -23,7 +29,8 @@ namespace Scripts
             _particle.SetActive(false);
             TowerManager.onPlacingTowers += TowerManager_onPlacingTowers;
             TowerManager.onPlacingTowersFinished += TurnOffParticles;
-            UIManager.OnTowerSelected += GetTowerName;
+            UIManager.OnDismantlingTower += DismantleCurrentTower;
+            
         }
 
         private void TowerManager_onPlacingTowers()
@@ -47,6 +54,8 @@ namespace Scripts
 
         private void OnMouseDown()
         {
+
+
             if (_isAvailable == true && TowerManager.Instance.CanPlaceTower() == true)
             {
                 //try to place tower
@@ -58,24 +67,45 @@ namespace Scripts
                 _currentTower = TowerManager.Instance.PlaceTower(transform.position);
                 _isAvailable = false;
                 _particle.SetActive(false);
+
             }
+
             else
             {
-                //this is called when try to upgrade
-                //display upgrade UI
-                UIManager.Instance.ActivateUpgrade();
+                if (_isAvailable == false)
+                {
+                    _isSpotSelected = true;
+                    GameManager.OnSellingTower += GetTowerValueInWarFunds;
+                    //this is called when try to upgrade
+                    //display upgrade UI
+                    _currentTowerName = _currentTower.name;
+                    if (_currentTowerName == "Gatling_Gun(Clone)")
+                    {
+                        _towerCostRefund = 150;
+                        UIManager.Instance.ActivateUpgradeGatlingGun();
+
+                    }
+                    if (_currentTowerName == "Missile_Launcher_Turret(Clone)")
+                    {
+                        _towerCostRefund = 400;
+                        UIManager.Instance.ActivateUpgradeMissile();
+
+                    }
+                }
+
+
 
             }
-
-
-            if (onSelectingTower != null)
-            {
-
-                Debug.Log(onSelectingTower());
-            }
-            
 
         }
+
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        DismantleCurrentTower();
+        //    }
+        //}
 
         private void OnMouseExit()
         {
@@ -84,10 +114,32 @@ namespace Scripts
             TowerManager.Instance.UnSnapPosition();
         }
 
+        public void DismantleCurrentTower()
+        {
+            if (_isSpotSelected == true)
+            {
+                Destroy(_currentTower);
+            }       
+        }
+
         void TurnOffParticles()
         {
             _particle.SetActive(false);
         }
+
+        public int GetTowerValueInWarFunds()
+        {
+            if (_isSpotSelected == true)
+            {
+                return _towerCostRefund;
+            }
+            else
+            {
+                return 0;
+            }
+           
+        }
+
 
         private void OnDisable()
         {
@@ -95,10 +147,7 @@ namespace Scripts
             TowerManager.onPlacingTowersFinished -= TurnOffParticles;
         }
 
-        public string GetTowerName()
-        {
-            return onSelectingTower();
-        }
+
 
     }
 }

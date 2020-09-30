@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 5951876877720634624}
   - component: {fileID: 3482585070863909260}
   - component: {fileID: 7848356470169898832}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,6 +1078,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEnemyInRange: 0
-  _enemy: {fileID: 0}
   _queueIndex: 0
   _enemiesInQueue: []
