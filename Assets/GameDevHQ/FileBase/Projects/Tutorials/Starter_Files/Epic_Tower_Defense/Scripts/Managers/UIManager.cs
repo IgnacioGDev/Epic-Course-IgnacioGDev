@@ -73,6 +73,7 @@ namespace Scripts.Managers
         public void CancelTowers()
         {
             _towerSelected = 0;
+            DefaultArmoryOptions();
         }
 
         public int GetItemPicked()
@@ -97,6 +98,15 @@ namespace Scripts.Managers
             _sellSpriteButton.SetActive(true);
             _gatlingGunSpriteButton.SetActive(false);
             _missileSpriteButton.SetActive(false);
+        }
+
+        public void DefaultArmoryOptions()
+        {
+            _gatlingGunUpgradeSprite.SetActive(false);
+            _missilieUpgradeSprite.SetActive(false);
+            _sellSpriteButton.SetActive(false);
+            _gatlingGunSpriteButton.SetActive(true);
+            _missileSpriteButton.SetActive(true);
         }
     }
 }

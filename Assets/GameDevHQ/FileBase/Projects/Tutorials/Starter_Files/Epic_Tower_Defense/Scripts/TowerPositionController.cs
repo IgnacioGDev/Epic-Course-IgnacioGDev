@@ -29,6 +29,7 @@ namespace Scripts
             _particle.SetActive(false);
             TowerManager.onPlacingTowers += TowerManager_onPlacingTowers;
             TowerManager.onPlacingTowersFinished += TurnOffParticles;
+            
             UIManager.OnDismantlingTower += DismantleCurrentTower;
             
         }
@@ -44,6 +45,7 @@ namespace Scripts
 
         private void OnMouseEnter()
         {
+            //_isSpotSelected = false;
             if (_isAvailable == true)
             {
                 //Snap to position
@@ -54,7 +56,6 @@ namespace Scripts
 
         private void OnMouseDown()
         {
-
 
             if (_isAvailable == true && TowerManager.Instance.CanPlaceTower() == true)
             {
@@ -76,6 +77,8 @@ namespace Scripts
                 {
                     _isSpotSelected = true;
                     GameManager.OnSellingTower += GetTowerValueInWarFunds;
+                    TowerManager.OnUpgradingTowers += GetCurrentTower;
+                    TowerManager.OnGettingTowerPosition += GetCurrentTowerPos;
                     //this is called when try to upgrade
                     //display upgrade UI
                     _currentTowerName = _currentTower.name;
@@ -92,20 +95,8 @@ namespace Scripts
 
                     }
                 }
-
-
-
             }
-
         }
-
-        //private void Update()
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Space))
-        //    {
-        //        DismantleCurrentTower();
-        //    }
-        //}
 
         private void OnMouseExit()
         {
@@ -122,6 +113,11 @@ namespace Scripts
             }       
         }
 
+        public bool RestoreAvailableSpot()
+        {
+            return _isAvailable = true;
+        }
+
         void TurnOffParticles()
         {
             _particle.SetActive(false);
@@ -131,6 +127,7 @@ namespace Scripts
         {
             if (_isSpotSelected == true)
             {
+                RestoreAvailableSpot();
                 return _towerCostRefund;
             }
             else
@@ -138,6 +135,32 @@ namespace Scripts
                 return 0;
             }
            
+        }
+
+        public string GetCurrentTower()
+        {
+            if (_isSpotSelected == true)
+            {
+                return _currentTowerName;
+            }
+            else
+            {
+                Debug.Log("GetCurrentTower is not returning anything");
+                return null;
+            }
+        }
+
+        public Vector3 GetCurrentTowerPos()
+        {
+            if (_isSpotSelected == true)
+            {
+                return gameObject.transform.position;
+            }
+            else
+            {
+                Debug.Log("GetCurrentTowerPos is not returning anything");
+                return Vector3.zero;
+            }
         }
 
 

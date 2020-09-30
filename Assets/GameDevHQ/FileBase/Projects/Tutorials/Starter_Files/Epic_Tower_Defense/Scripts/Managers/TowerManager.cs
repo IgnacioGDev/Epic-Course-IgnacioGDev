@@ -29,6 +29,10 @@ namespace Scripts.Managers
         private GameObject[] _towerPrefabs;
         [SerializeField]
         private MeshRenderer[] _towerRadius;
+        [SerializeField]
+        private GameObject _gatlingGunUpgrade;
+        [SerializeField]
+        private GameObject _missileUpgrade;
 
 
         private int _activeDecoyIndex;
@@ -37,6 +41,8 @@ namespace Scripts.Managers
         public static event Action onPlacingTowers;
         public static event Action onPlacingTowersFinished;
         public static event Action onCancelTowers;
+        public static event Func<string> OnUpgradingTowers;
+        public static event Func<Vector3> OnGettingTowerPosition;
 
 
         private void Awake()
@@ -179,6 +185,22 @@ namespace Scripts.Managers
             if (_canPlaceTower == false)
             {
                 TowerUnderMouseMovement();
+            }
+        }
+
+        public void InstantiateUpgrades()
+        {
+            if (OnUpgradingTowers != null)
+            {
+                if (OnUpgradingTowers() == "Gatling_Gun(Clone)")
+                {
+                    Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
+                    Debug.Log("UPDATING THE GATLING GUN");
+                }
+                if (OnUpgradingTowers() == "Missile_Launcher_Turret(Clone)")
+                {
+                    Debug.Log("UPDATING THE MISSILE LAUNCHER");
+                }
             }
         }
 
