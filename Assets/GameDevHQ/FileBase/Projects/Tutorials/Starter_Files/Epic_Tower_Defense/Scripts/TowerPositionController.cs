@@ -19,6 +19,8 @@ namespace Scripts
         [SerializeField]
         private bool _isSpotSelected = false;
         [SerializeField]
+        private bool _isUpgraded = false;
+        [SerializeField]
         private int _towerCostRefund;
 
         public static event Action onBuyingTower;
@@ -52,6 +54,10 @@ namespace Scripts
                 //Tuen radius green
                 TowerManager.Instance.SnapToPosition(transform.position);
             }
+            if (_isAvailable == false && _isUpgraded == true)
+            {
+                _currentTower = TowerManager.Instance.GetUpgradedTower();
+            }
         }
 
         private void OnMouseDown()
@@ -77,7 +83,8 @@ namespace Scripts
                 {
                     _isSpotSelected = true;
                     GameManager.OnSellingTower += GetTowerValueInWarFunds;
-                    TowerManager.OnUpgradingTowers += GetCurrentTower;
+                    TowerManager.OnUpgradingGatlingGun += GetCurrentTower;
+                    TowerManager.OnUpgradingMissile += GetCurrentTower;
                     TowerManager.OnGettingTowerPosition += GetCurrentTowerPos;
                     //this is called when try to upgrade
                     //display upgrade UI
@@ -93,6 +100,10 @@ namespace Scripts
                         _towerCostRefund = 400;
                         UIManager.Instance.ActivateUpgradeMissile();
 
+                    }
+                    if (_isUpgraded)
+                    {
+                        
                     }
                 }
             }
@@ -154,6 +165,7 @@ namespace Scripts
         {
             if (_isSpotSelected == true)
             {
+                _isUpgraded = true;
                 return gameObject.transform.position;
             }
             else

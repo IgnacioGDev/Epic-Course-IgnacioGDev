@@ -6,6 +6,7 @@ using Scripts.Managers;
 using GameDevHQ.FileBase.Missle_Launcher;
 using System;
 using GameDevHQ.FileBase.Gatling_Gun;
+using GameDevHQ.FileBase.Dual_Gatling_Gun;
 
 namespace Scripts
 {
@@ -59,8 +60,9 @@ namespace Scripts
 
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
+            Dual_Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
-            //AttackRadius.onGatlingGunFX += GatlingGunFX;
+            //AttackRadius.onGatlingGunFX += GatlingGunFX;s
 
             _explotionParticle.Stop();
             _expMissilParticle.Stop();

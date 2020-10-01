@@ -1,4 +1,5 @@
-﻿using GameDevHQ.FileBase.Gatling_Gun;
+﻿using GameDevHQ.FileBase.Dual_Gatling_Gun;
+using GameDevHQ.FileBase.Gatling_Gun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Scripts
         private void OnEnable()
         {
             Gatling_Gun.GetEnemiesInQueue += QueueNumber;
+            Dual_Gatling_Gun.GetEnemiesInQueue += QueueNumber;
             EnemyAI.onDeath += RemoveEnemy;
             EndZoneTrigger.onWaveDestroyed += ResetRadiusRange;
 

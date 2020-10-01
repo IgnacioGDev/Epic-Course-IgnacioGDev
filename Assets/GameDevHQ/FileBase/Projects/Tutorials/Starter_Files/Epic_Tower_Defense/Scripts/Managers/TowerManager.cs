@@ -33,6 +33,8 @@ namespace Scripts.Managers
         private GameObject _gatlingGunUpgrade;
         [SerializeField]
         private GameObject _missileUpgrade;
+        [SerializeField]
+        private GameObject _upgradedTower;
 
 
         private int _activeDecoyIndex;
@@ -41,7 +43,8 @@ namespace Scripts.Managers
         public static event Action onPlacingTowers;
         public static event Action onPlacingTowersFinished;
         public static event Action onCancelTowers;
-        public static event Func<string> OnUpgradingTowers;
+        public static event Func<string> OnUpgradingGatlingGun;
+        public static event Func<string> OnUpgradingMissile;
         public static event Func<Vector3> OnGettingTowerPosition;
 
 
@@ -190,18 +193,27 @@ namespace Scripts.Managers
 
         public void InstantiateUpgrades()
         {
-            if (OnUpgradingTowers != null)
+            if (OnUpgradingGatlingGun != null)
             {
-                if (OnUpgradingTowers() == "Gatling_Gun(Clone)")
+                if (OnUpgradingGatlingGun() == "Gatling_Gun(Clone)")
                 {
-                    Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
+                     _upgradedTower = Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
                     Debug.Log("UPDATING THE GATLING GUN");
                 }
-                if (OnUpgradingTowers() == "Missile_Launcher_Turret(Clone)")
+            }
+            if (OnUpgradingMissile != null)
+            {
+                if (OnUpgradingMissile() == "Missile_Launcher_Turret(Clone)")
                 {
+                    _upgradedTower = Instantiate(_missileUpgrade, OnGettingTowerPosition(), Quaternion.identity);
                     Debug.Log("UPDATING THE MISSILE LAUNCHER");
                 }
             }
+        }
+
+        public GameObject GetUpgradedTower()
+        {
+            return _upgradedTower;
         }
 
     }
