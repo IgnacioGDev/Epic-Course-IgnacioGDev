@@ -61,6 +61,7 @@ namespace Scripts
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             Dual_Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
+            GameDevHQ.FileBase.Missle_Launcher_Dual_Turret.Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
             //AttackRadius.onGatlingGunFX += GatlingGunFX;s
 

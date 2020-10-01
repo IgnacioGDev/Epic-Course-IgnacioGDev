@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameDevHQ.FileBase.Missle_Launcher_Dual_Turret.Missle;
+using Scripts;
+using System;
 
 namespace GameDevHQ.FileBase.Missle_Launcher_Dual_Turret
 {
@@ -27,13 +29,37 @@ namespace GameDevHQ.FileBase.Missle_Launcher_Dual_Turret
         private float _destroyTime = 10.0f; //how long till the rockets get cleaned up
         private bool _launched; //bool to check if we launched the rockets
 
+        //ADDED BY ME
+        [SerializeField]
+        private AttackRadius _attackRadius;
+        [SerializeField]
+        private GameObject _missileSupport;
+
+        public static Func<bool> ReturnEnemyStatus;
+
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _launched == false) //check for space key and if we launched the rockets
+            Attack();
+        }
+
+        private void Attack()
+        {
+            if (ReturnEnemyStatus != null)
             {
-                _launched = true; //set the launch bool to true
-                StartCoroutine(FireRocketsRoutine()); //start a coroutine that fires the rockets. 
+                if (_attackRadius.IsRadiusActive() == true && ReturnEnemyStatus() == true) //check for space key and if we launched the rockets
+                {
+                    Vector3 direction = _attackRadius.GetEnemyPosition() - transform.position;
+                    _missileSupport.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+                    if (_launched == false)
+                    {
+                        _launched = true; //set the launch bool to true
+                        StartCoroutine(FireRocketsRoutine()); //start a coroutine that fires the rockets. 
+                    }
+                    
+                }
             }
+
         }
 
         IEnumerator FireRocketsRoutine()

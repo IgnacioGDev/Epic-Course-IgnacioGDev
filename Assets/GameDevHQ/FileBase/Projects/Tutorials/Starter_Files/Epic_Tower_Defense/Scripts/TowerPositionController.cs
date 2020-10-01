@@ -31,10 +31,13 @@ namespace Scripts
             _particle.SetActive(false);
             TowerManager.onPlacingTowers += TowerManager_onPlacingTowers;
             TowerManager.onPlacingTowersFinished += TurnOffParticles;
-            
+
             UIManager.OnDismantlingTower += DismantleCurrentTower;
             TowerManager.onGetActiveSpot += GetSpot;
-            
+
+
+
+
         }
 
         private void TowerManager_onPlacingTowers()
@@ -86,6 +89,8 @@ namespace Scripts
                     //this is called when try to upgrade
                     //display upgrade UI
                     _currentTowerName = _currentTower.name;
+                    //AttackRadius.ReturnTowerType += GetTowerType;
+
                     if (_currentTowerName == "Gatling_Gun(Clone)")
                     {
                         _towerCostRefund = 150;
@@ -100,7 +105,7 @@ namespace Scripts
                     }
                     if (_isUpgraded)
                     {
-                        
+
                     }
                 }
             }
@@ -126,7 +131,7 @@ namespace Scripts
             if (_isSpotSelected == true)
             {
                 Destroy(_currentTower);
-            }       
+            }
         }
 
         public bool RestoreAvailableSpot()
@@ -150,7 +155,7 @@ namespace Scripts
             {
                 return 0;
             }
-           
+
         }
 
         public string GetCurrentTower()
@@ -187,6 +192,11 @@ namespace Scripts
                 return this;
             }
             return null;
+        }
+
+        public string GetTowerType()
+        {
+            return _currentTowerName;
         }
 
         private void OnDisable()
