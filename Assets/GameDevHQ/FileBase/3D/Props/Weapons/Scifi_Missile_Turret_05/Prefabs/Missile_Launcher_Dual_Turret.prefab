@@ -1101,10 +1101,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _missilePrefab: {fileID: 1909211218276452, guid: 5c6948683bd97124a91ca4af6a7ed8b4,
     type: 3}
-  _misslePositions: []
-  _fireDelay: 0
-  _launchSpeed: 0
-  _power: 0
+  _misslePositions:
+  - {fileID: 1995317900301310}
+  - {fileID: 1157582731368434}
+  - {fileID: 1086171424697458}
+  - {fileID: 1255499207706544}
+  - {fileID: 1441933424927852}
+  - {fileID: 1770064571432884}
+  - {fileID: 1568099262073704}
+  - {fileID: 1891850004438186}
+  - {fileID: 1004252436174350}
+  - {fileID: 1897688784281268}
+  - {fileID: 1239570504970028}
+  - {fileID: 1678957458711370}
+  _fireDelay: 2
+  _launchSpeed: 10
+  _power: 20
   _fuseDelay: 0
   _reloadTime: 0
   _destroyTime: 10

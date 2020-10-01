@@ -33,6 +33,7 @@ namespace Scripts
             TowerManager.onPlacingTowersFinished += TurnOffParticles;
             
             UIManager.OnDismantlingTower += DismantleCurrentTower;
+            TowerManager.onGetActiveSpot += GetSpot;
             
         }
 
@@ -53,10 +54,6 @@ namespace Scripts
                 //Snap to position
                 //Tuen radius green
                 TowerManager.Instance.SnapToPosition(transform.position);
-            }
-            if (_isAvailable == false && _isUpgraded == true)
-            {
-                _currentTower = TowerManager.Instance.GetUpgradedTower();
             }
         }
 
@@ -106,6 +103,14 @@ namespace Scripts
                         
                     }
                 }
+            }
+        }
+
+        public void Upgraded(TowerPositionController spot, GameObject tower)
+        {
+            if (spot == this)
+            {
+                _currentTower = tower;
             }
         }
 
@@ -175,6 +180,14 @@ namespace Scripts
             }
         }
 
+        public TowerPositionController GetSpot()
+        {
+            if (_isSpotSelected == true)
+            {
+                return this;
+            }
+            return null;
+        }
 
         private void OnDisable()
         {

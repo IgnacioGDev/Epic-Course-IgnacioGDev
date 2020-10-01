@@ -46,6 +46,8 @@ namespace Scripts.Managers
         public static event Func<string> OnUpgradingGatlingGun;
         public static event Func<string> OnUpgradingMissile;
         public static event Func<Vector3> OnGettingTowerPosition;
+        public static event Action<TowerPositionController, GameObject> onUpgradeComplete;
+        public static event Func<TowerPositionController> onGetActiveSpot;
 
 
         private void Awake()
@@ -197,8 +199,14 @@ namespace Scripts.Managers
             {
                 if (OnUpgradingGatlingGun() == "Gatling_Gun(Clone)")
                 {
+                    TowerPositionController spot = onGetActiveSpot();
                      _upgradedTower = Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
                     Debug.Log("UPDATING THE GATLING GUN");
+                    if (onUpgradeComplete != null)
+                    {
+                        onUpgradeComplete(spot, _upgradedTower);
+                    }
+                    
                 }
             }
             if (OnUpgradingMissile != null)
