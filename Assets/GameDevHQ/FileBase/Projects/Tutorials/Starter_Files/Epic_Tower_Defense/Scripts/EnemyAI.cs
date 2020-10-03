@@ -7,6 +7,7 @@ using GameDevHQ.FileBase.Missle_Launcher;
 using System;
 using GameDevHQ.FileBase.Gatling_Gun;
 using GameDevHQ.FileBase.Dual_Gatling_Gun;
+using UnityEngine.Animations;
 
 namespace Scripts
 {
@@ -50,6 +51,11 @@ namespace Scripts
 
         public static event Action<GameObject> onDeath;
         public static event Action onCheckingEnemiesDestroyed;
+
+        [SerializeField]
+        private Transform _targetToAttack;
+        [SerializeField]
+        private Transform _upperBody;
 
 
         // Start is called before the first frame update
@@ -139,6 +145,30 @@ namespace Scripts
                 _expMissilParticle.Play();
 
             }
+            if (other.name == "Attack Radius")
+            {
+                _animator.SetBool("isAttacking", true);
+            }
+        }
+
+        //private void OnTriggerStay(Collider other)
+        //{
+        //    if (other.name == "Attack Radius")
+        //    {
+        //        _targetToAttack = other.transform;
+        //        Debug.Log("INSIDE TOWER");
+        //        var direction = other.transform.position - transform.position;
+        //        transform.rotation = Quaternion.LookRotation(direction);
+        //    }
+        //}
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.name == "Attack Radius")
+            {
+                _animator.SetBool("isAttacking", false);
+                //_upperBodyMech.transform.Rotate(Vector3.forward, 0f);
+            }
         }
 
         private void DestroyEnemy()
@@ -147,6 +177,11 @@ namespace Scripts
             {
                 if (_hitPoints <= 0)
                 {
+                    UpperBodyMech.OnMechDestroyed += GetHitPoints;
+
+                    var parentConstraint = _upperBody.GetComponent<ParentConstraint>();
+                    parentConstraint.constraintActive = false;
+
                     //var expEffect = (GameObject) Instantiate(_explotion, transform.position + new Vector3(0,2f,0), Quaternion.identity);
                     //if (_explotionParticle.isPlaying == false)
                     //{
@@ -201,6 +236,11 @@ namespace Scripts
                 _hitPoints -= 0.5f * Time.deltaTime;
             }
 
+        }
+
+        public float GetHitPoints()
+        {
+            return _hitPoints;
         }
 
         IEnumerator DisableEnemy()
