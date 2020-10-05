@@ -66,19 +66,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Blend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -95,7 +95,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Shooting Layer
     m_StateMachine: {fileID: 6111124044079748866}
-    m_Mask: {fileID: 31900000, guid: 2028c693c448c584db85f4e389288d53, type: 2}
+    m_Mask: {fileID: 31900000, guid: 79e178ee4d45fce49bbde19167f1f919, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1

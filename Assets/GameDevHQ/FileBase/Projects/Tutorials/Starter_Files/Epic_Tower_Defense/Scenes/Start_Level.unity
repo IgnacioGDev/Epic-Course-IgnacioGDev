@@ -4498,12 +4498,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bc79698eb626f4f90fe8694a8e12b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiSprites:
+  - {fileID: 21300000, guid: 9df99f9bc1ff489489c6ce0326a2a5c7, type: 3}
+  - {fileID: 21300000, guid: d8069acbeaaece243af1b255f894784f, type: 3}
+  - {fileID: 21300000, guid: 0a720f0111ad96040b79d70eedd519a2, type: 3}
+  - {fileID: 21300000, guid: a0dd7c3cadef8954fa5c48812e34e42f, type: 3}
+  - {fileID: 21300000, guid: 285739d8638af604f9d32f3c60f005ab, type: 3}
+  - {fileID: 21300000, guid: e9b3b99a6a73641409d04b464a49a2fb, type: 3}
+  - {fileID: 21300000, guid: d99020c4533b3184eb34410fe93cbaaf, type: 3}
+  - {fileID: 21300000, guid: fab075acc2ab9b34fb3c93246e1df488, type: 3}
+  - {fileID: 21300000, guid: 6dfa00640b4334e49942443ce04b6c44, type: 3}
+  - {fileID: 21300000, guid: a0c775617a645c4488e28f1ae4535e90, type: 3}
+  _playBackSprite: {fileID: 1353408165}
+  _armorySprite: {fileID: 1706649507}
+  _warfundsSprite: {fileID: 350660924}
+  _livesHubSprite: {fileID: 2105959597}
   _towerSelected: 0
   _gatlingGunUpgradeSprite: {fileID: 1364565713}
   _missilieUpgradeSprite: {fileID: 46770128}
   _gatlingGunSpriteButton: {fileID: 150529098}
   _missileSpriteButton: {fileID: 1416097948}
   _sellSpriteButton: {fileID: 1624499973}
+  _livesText: {fileID: 783571177}
 --- !u!1001 &595690249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13794,6 +13810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9313310b71854e4282a7318542e9673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 100
   _endZoneTrigger: {fileID: 757453979}
   _inGameFunds: {fileID: 2109062355}
 --- !u!4 &1708022563

@@ -22,6 +22,16 @@ namespace Scripts.Managers
         }
 
         [SerializeField]
+        private Sprite[] _uiSprites;
+        [SerializeField]
+        private Image _playBackSprite;
+        [SerializeField]
+        private Image _armorySprite;
+        [SerializeField]
+        private Image _warfundsSprite;
+        [SerializeField]
+        private Image _livesHubSprite;
+        [SerializeField]
         private int _towerSelected = 0;
         [SerializeField]
         private GameObject _gatlingGunUpgradeSprite;
@@ -33,6 +43,8 @@ namespace Scripts.Managers
         private GameObject _missileSpriteButton;
         [SerializeField]
         private GameObject _sellSpriteButton;
+        [SerializeField]
+        private Text _livesText;
 
         public static event Func<string> OnTowerSelected;
         public static event Action OnDismantlingTower;
@@ -47,6 +59,11 @@ namespace Scripts.Managers
         private void Awake()
         {
             _instance = this;
+        }
+
+        private void Update()
+        {
+            UpdateLifeUI();
         }
 
         public void SelectTower(Button btn)
@@ -66,7 +83,7 @@ namespace Scripts.Managers
             if (OnDismantlingTower != null)
             {
                 OnDismantlingTower();
-            }           
+            }
         }
 
 
@@ -79,6 +96,26 @@ namespace Scripts.Managers
         public int GetItemPicked()
         {
             return _towerSelected;
+        }
+
+        private void UpdateLifeUI()
+        {
+            _livesText.text = GameManager.Instance.GetAmountOfLives().ToString();
+
+            if (GameManager.Instance.GetAmountOfLives() < 85)
+            {
+                _playBackSprite.GetComponent<Image>().sprite = _uiSprites[4];
+                _armorySprite.GetComponent<Image>().sprite = _uiSprites[0];
+                _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[8];
+                _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[2];
+            }
+            if (GameManager.Instance.GetAmountOfLives() < 70)
+            {
+                _playBackSprite.GetComponent<Image>().sprite = _uiSprites[5];
+                _armorySprite.GetComponent<Image>().sprite = _uiSprites[1];
+                _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[9];
+                _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[3];
+            }
         }
 
         public void ActivateUpgradeGatlingGun()

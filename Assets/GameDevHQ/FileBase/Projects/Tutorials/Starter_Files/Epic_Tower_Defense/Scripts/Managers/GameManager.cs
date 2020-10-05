@@ -25,7 +25,8 @@ namespace Scripts.Managers
                 return _instance;
             }
         }
-
+        [SerializeField]
+        private float lives = 100f;
         [SerializeField]
         private Transform _endZoneTrigger;
         [SerializeField]
@@ -85,6 +86,16 @@ namespace Scripts.Managers
             {
                 _warFunds += OnSellingTower();
             }
+        }
+
+        public void LifeIndicator()
+        {
+            lives = lives - 5;
+        }
+
+        public float GetAmountOfLives()
+        {
+            return lives;
         }
 
         private void OnDisable()

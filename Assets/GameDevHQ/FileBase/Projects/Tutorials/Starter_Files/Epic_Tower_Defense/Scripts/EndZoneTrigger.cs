@@ -18,8 +18,13 @@ namespace Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("ENEMY DESTROYED");
-
+            //Invokes GameManager.LifeIndicator and subtracts lifes every time an enemy reaches the endzone
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                GameManager.Instance.LifeIndicator();
+            }
+            
+            //When the enemy is deactivated, the event onEnemyReachedEnd is called
             other.gameObject.SetActive(false);
 
             if (onEnemyReachedEnd != null)
