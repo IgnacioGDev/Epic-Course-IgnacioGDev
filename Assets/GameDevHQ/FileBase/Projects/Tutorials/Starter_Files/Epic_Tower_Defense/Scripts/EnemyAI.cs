@@ -57,12 +57,18 @@ namespace Scripts
         [SerializeField]
         private Transform _upperBody;
 
+        //Dissolve Shader
+        private Renderer[] _renderers;
+
+
 
         // Start is called before the first frame update
         void OnEnable()
         {
             _boxCollider = GetComponent<BoxCollider>();
+            _renderers = GetComponentsInChildren<Renderer>();
 
+            
 
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
@@ -96,14 +102,18 @@ namespace Scripts
                     EnemyDestination(_destination.transform.position);
                 }
             }
+
+            
         }
 
 
 
         private void Update()
         {
+            Debugging();
             //GatlingGunFX();
             DestroyEnemy();
+            
         }
 
         public void EnemyDestination(Vector3 endPoint)
@@ -216,11 +226,16 @@ namespace Scripts
                         onCheckingEnemiesDestroyed();
                     }
                     _isAlive = false;
+                    _animator.SetBool("isAttacking", false);
+                    StartCoroutine(DeathEffectDelay());
                 }
             }
+        }
 
-
-
+        IEnumerator DeathEffectDelay()
+        {
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(DissolveEffect());
         }
 
         public bool IsEnemyActive()
@@ -249,6 +264,21 @@ namespace Scripts
             this.gameObject.SetActive(false);
         }
 
+        IEnumerator DissolveEffect()
+        {
+            var fill = 0f;
+
+            while (fill < 1)
+            {
+                fill += Time.deltaTime / 2;
+                foreach (var rend in _renderers)
+                {
+                    rend.material.SetFloat("_fillAmount", fill);
+                }
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
         private void OnDisable()
         {
             Missle_Launcher.ReturnEnemyStatus -= IsEnemyActive;
@@ -263,6 +293,15 @@ namespace Scripts
         //    }
 
         //}
+
+        //Debug
+        private void Debugging()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _hitPoints = 0f;
+            }
+        }
 
     }
 }
