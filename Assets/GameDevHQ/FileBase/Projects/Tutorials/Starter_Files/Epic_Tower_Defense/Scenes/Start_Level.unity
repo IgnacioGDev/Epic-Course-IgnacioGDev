@@ -4520,6 +4520,8 @@ MonoBehaviour:
   _missileSpriteButton: {fileID: 1416097948}
   _sellSpriteButton: {fileID: 1624499973}
   _livesText: {fileID: 783571177}
+  _statusText: {fileID: 254106825}
+  _currentWaveCount: {fileID: 640746102}
 --- !u!1001 &595690249
 PrefabInstance:
   m_ObjectHideFlags: 0

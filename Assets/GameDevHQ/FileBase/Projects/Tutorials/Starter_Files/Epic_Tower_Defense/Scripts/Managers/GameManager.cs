@@ -31,20 +31,21 @@ namespace Scripts.Managers
         private Transform _endZoneTrigger;
         [SerializeField]
         private Text _inGameFunds;
-        private float _warFunds;
+        private int _warFunds;
 
         public static event Func<int> OnSellingTower;
+        public static event Func<int> OnAddLootedFunds;
 
         //Singleton instantiation
         private void Awake()
         {
             _instance = this;
-            
+
         }
 
         private void Start()
         {
-            _warFunds = 1000;
+            _warFunds = 900;
         }
 
         private void OnEnable()
@@ -55,6 +56,16 @@ namespace Scripts.Managers
         private void Update()
         {
             _inGameFunds.text = _warFunds.ToString();
+            Debug.Log("ADD WAR FRUNDS: " + _warFunds);
+            NormalizeNegativeFunds();
+        }
+
+        private void NormalizeNegativeFunds()
+        {
+            if (_warFunds < 0)
+            {
+                _warFunds = 0;
+            }
         }
 
         public Transform GetEndZone()
@@ -80,12 +91,30 @@ namespace Scripts.Managers
 
         }
 
+        //Method being used in UI in "selling tower" button
         public void AddWarFunds()
         {
             if (OnSellingTower != null)
             {
                 _warFunds += OnSellingTower();
+
             }
+        }
+
+        //Method to add funds to warFunds when an enemy is killed
+        //public int AddLootedFunds()
+        //{
+        //    if (OnAddLootedFunds != null)
+        //    {   
+        //        return _warFunds += OnAddLootedFunds();             
+        //    }
+        //    else
+        //    return _warFunds;
+        //}
+
+        public void AddLootedFunds(int loot)
+        {
+            _warFunds += loot;
         }
 
         public void LifeIndicator()

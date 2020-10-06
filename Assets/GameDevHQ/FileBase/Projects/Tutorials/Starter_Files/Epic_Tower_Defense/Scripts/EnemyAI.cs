@@ -21,7 +21,7 @@ namespace Scripts
         [SerializeField]
         private float _hitPoints = 10;
         [SerializeField]
-        private float _moneyLoot;
+        private int _moneyLoot;
         [SerializeField]
         private bool _enemyState = true;
         [SerializeField]
@@ -39,6 +39,8 @@ namespace Scripts
         private GameObject _expMissile;
         [SerializeField]
         private ParticleSystem _expMissilParticle;
+        [SerializeField]
+        private bool _lootMoneyToogle;
 
         //[SerializeField]
         //private GameObject _sparks;
@@ -68,13 +70,17 @@ namespace Scripts
             _boxCollider = GetComponent<BoxCollider>();
             _renderers = GetComponentsInChildren<Renderer>();
 
-            
+            _lootMoneyToogle = true;
 
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             Dual_Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             GameDevHQ.FileBase.Missle_Launcher_Dual_Turret.Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
+
+
+
+
             //AttackRadius.onGatlingGunFX += GatlingGunFX;s
 
             _explotionParticle.Stop();
@@ -103,7 +109,7 @@ namespace Scripts
                 }
             }
 
-            
+
         }
 
 
@@ -113,7 +119,7 @@ namespace Scripts
             Debugging();
             //GatlingGunFX();
             DestroyEnemy();
-            
+
         }
 
         public void EnemyDestination(Vector3 endPoint)
@@ -188,6 +194,14 @@ namespace Scripts
                 if (_hitPoints <= 0)
                 {
                     UpperBodyMech.OnMechDestroyed += GetHitPoints;
+                    //GameManager.OnAddLootedFunds += GetMoneyLooted;
+                    if (_lootMoneyToogle == true)
+                    {
+                        _lootMoneyToogle = false;
+                        GameManager.Instance.AddLootedFunds(GetMoneyLooted());  
+                    }
+                    
+
 
                     var parentConstraint = _upperBody.GetComponent<ParentConstraint>();
                     parentConstraint.constraintActive = false;
@@ -205,7 +219,7 @@ namespace Scripts
                     {
                         _navMeshAgent.enabled = false;
                     }
-                    
+
                     _explotionParticle.Play();
 
                     _animator.SetBool("isDead", true);
@@ -218,7 +232,7 @@ namespace Scripts
                     //this.gameObject.SetActive(false);
 
                     //_navMeshAgent.SetDestination(transform.position);
-                    
+
                     StartCoroutine(DisableEnemy());
                     SpawnManager_ScriptableObjects.Instance.AmountOfEnemiesDestroyed();
                     if (onCheckingEnemiesDestroyed != null)
@@ -247,7 +261,7 @@ namespace Scripts
         {
             if (_hitPoints >= 0 && transform.position == pos)
             {
-                
+
                 _hitPoints -= 0.5f * Time.deltaTime;
             }
 
@@ -277,6 +291,23 @@ namespace Scripts
                 }
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        private int GetMoneyLooted()
+        {
+            if (gameObject.name == "Mech1(Clone)")
+            {
+                return _moneyLoot = 150;
+            }
+            if (gameObject.name == "Mech2(Clone)")
+            {
+                return _moneyLoot = 250;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
 
         private void OnDisable()

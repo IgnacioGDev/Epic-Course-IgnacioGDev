@@ -45,9 +45,15 @@ namespace Scripts.Managers
         private GameObject _sellSpriteButton;
         [SerializeField]
         private Text _livesText;
+        [SerializeField]
+        private Text _statusText;
+        [SerializeField]
+        private Text _currentWaveCount;
+
 
         public static event Func<string> OnTowerSelected;
         public static event Action OnDismantlingTower;
+
 
         //public static event Action onGatlingClick;
 
@@ -64,6 +70,10 @@ namespace Scripts.Managers
         private void Update()
         {
             UpdateLifeUI();
+
+            //NEED TO FIX - UI IS BEING BLOCKED BY THIS METHOD!!!!!!
+            //DefaultArmoryOptions();
+
         }
 
         public void SelectTower(Button btn)
@@ -101,6 +111,7 @@ namespace Scripts.Managers
         private void UpdateLifeUI()
         {
             _livesText.text = GameManager.Instance.GetAmountOfLives().ToString();
+            _currentWaveCount.text = PoolManager.Instance.GetCurrentWaveID().ToString();
 
             if (GameManager.Instance.GetAmountOfLives() < 85)
             {
@@ -108,6 +119,8 @@ namespace Scripts.Managers
                 _armorySprite.GetComponent<Image>().sprite = _uiSprites[0];
                 _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[8];
                 _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[2];
+
+                _statusText.text = "Fair";
             }
             if (GameManager.Instance.GetAmountOfLives() < 70)
             {
@@ -115,6 +128,8 @@ namespace Scripts.Managers
                 _armorySprite.GetComponent<Image>().sprite = _uiSprites[1];
                 _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[9];
                 _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[3];
+
+                _statusText.text = "Warning";
             }
         }
 
@@ -139,11 +154,23 @@ namespace Scripts.Managers
 
         public void DefaultArmoryOptions()
         {
-            _gatlingGunUpgradeSprite.SetActive(false);
-            _missilieUpgradeSprite.SetActive(false);
-            _sellSpriteButton.SetActive(false);
-            _gatlingGunSpriteButton.SetActive(true);
-            _missileSpriteButton.SetActive(true);
+            if (GameManager.Instance.GetWarFunds() >= 250)
+            {
+                _gatlingGunUpgradeSprite.SetActive(false);
+                _missilieUpgradeSprite.SetActive(false);
+                _sellSpriteButton.SetActive(false);
+                _gatlingGunSpriteButton.SetActive(true);
+                _missileSpriteButton.SetActive(true);
+            }
+            else
+            {
+                _gatlingGunUpgradeSprite.SetActive(false);
+                _missilieUpgradeSprite.SetActive(false);
+                _sellSpriteButton.SetActive(false);
+                _gatlingGunSpriteButton.SetActive(false);
+                _missileSpriteButton.SetActive(false);
+            }
+            
         }
     }
 }

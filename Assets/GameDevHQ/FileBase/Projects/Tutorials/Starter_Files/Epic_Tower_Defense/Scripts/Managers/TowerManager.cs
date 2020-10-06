@@ -36,6 +36,9 @@ namespace Scripts.Managers
         [SerializeField]
         private GameObject _upgradedTower;
 
+        [SerializeField]
+        private RaycastHit _checkCollider;
+
 
         private int _activeDecoyIndex;
         private bool _canPlaceTower = false;
@@ -57,57 +60,65 @@ namespace Scripts.Managers
 
         private void OnEnable()
         {
-            
+
         }
 
 
         // Update is called once per frame
         void Update()
         {
-            InstantiateTowersDeprecated();
+            //InstantiateTowersDeprecated();
             InstantiateTowers(UIManager.Instance.GetItemPicked());
 
         }
 
         private void InstantiateTowersDeprecated()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) //Gatling gun 
+            if (GameManager.Instance.GetWarFunds() >= 250)
             {
-                //Enable decoy gatling gun
-                _decoyTowers[0].SetActive(true);
-                _decoyTowers[1].SetActive(false);
-                _activeDecoyIndex = 0;
-
-                if (onPlacingTowers != null)
+                if (Input.GetKeyDown(KeyCode.Alpha1)) //Gatling gun 
                 {
-                    onPlacingTowers();
+                    //Enable decoy gatling gun
+                    _decoyTowers[0].SetActive(true);
+                    _decoyTowers[1].SetActive(false);
+                    _activeDecoyIndex = 0;
+
+                    if (onPlacingTowers != null)
+                    {
+                        onPlacingTowers();
+                    }
+
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2)) //Missile launcher
+                {
+                    //Enable decoy missile launcher
+                    _decoyTowers[0].SetActive(false);
+                    _decoyTowers[1].SetActive(true);
+                    _activeDecoyIndex = 1;
+
+                    if (onPlacingTowers != null)
+                        onPlacingTowers();
+
+                }
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+                {
+                    _decoyTowers[_activeDecoyIndex].SetActive(false);
+                    if (onPlacingTowersFinished != null)
+                    {
+                        onPlacingTowersFinished();
+                    }
                 }
 
+
+                if (_canPlaceTower == false)
+                {
+                    TowerUnderMouseMovement();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2)) //Missile launcher
+            else
             {
-                //Enable decoy missile launcher
                 _decoyTowers[0].SetActive(false);
-                _decoyTowers[1].SetActive(true);
-                _activeDecoyIndex = 1;
-
-                if (onPlacingTowers != null)
-                    onPlacingTowers();
-
-            }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
-            {
-                _decoyTowers[_activeDecoyIndex].SetActive(false);
-                if (onPlacingTowersFinished != null)
-                {
-                    onPlacingTowersFinished();
-                }
-            }
-
-
-            if (_canPlaceTower == false)
-            {
-                TowerUnderMouseMovement();
+                _decoyTowers[1].SetActive(false);
             }
         }
 
@@ -120,11 +131,11 @@ namespace Scripts.Managers
             {
                 _decoyTowers[_activeDecoyIndex].transform.position = hitInfo.point;
             }
+
         }
 
-
         public void SnapToPosition(Vector3 spotPos)
-        {        
+        {
             _decoyTowers[_activeDecoyIndex].transform.position = spotPos;
             _canPlaceTower = true;
             _towerRadius[_activeDecoyIndex].material.color = Color.green;
@@ -149,47 +160,56 @@ namespace Scripts.Managers
 
         private void InstantiateTowers(int towerID)
         {
-            if (towerID == 1) //Gatling gun 
+            if (GameManager.Instance.GetWarFunds() >= 250)
             {
-                //Enable decoy gatling gun
-                _decoyTowers[0].SetActive(true);
-                _decoyTowers[1].SetActive(false);
-                _activeDecoyIndex = 0;
 
-                if (onPlacingTowers != null)
+                if (towerID == 1) //Gatling gun 
                 {
-                    onPlacingTowers();
+                    //Enable decoy gatling gun
+                    _decoyTowers[0].SetActive(true);
+                    _decoyTowers[1].SetActive(false);
+                    _activeDecoyIndex = 0;
+
+                    if (onPlacingTowers != null)
+                    {
+                        onPlacingTowers();
+                    }
+
+                }
+                if (towerID == 2) //Missile launcher
+                {
+                    //Enable decoy missile launcher
+                    _decoyTowers[0].SetActive(false);
+                    _decoyTowers[1].SetActive(true);
+                    _activeDecoyIndex = 1;
+
+                    if (onPlacingTowers != null)
+                        onPlacingTowers();
+
+                }
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+                {
+                    _decoyTowers[_activeDecoyIndex].SetActive(false);
+                    if (onPlacingTowersFinished != null)
+                    {
+                        onPlacingTowersFinished();
+                    }
+                    if (onCancelTowers != null)
+                    {
+                        onCancelTowers();
+                    }
                 }
 
+
+                if (_canPlaceTower == false)
+                {
+                    TowerUnderMouseMovement();
+                }
             }
-            if (towerID == 2) //Missile launcher
+            else
             {
-                //Enable decoy missile launcher
                 _decoyTowers[0].SetActive(false);
-                _decoyTowers[1].SetActive(true);
-                _activeDecoyIndex = 1;
-
-                if (onPlacingTowers != null)
-                    onPlacingTowers();
-
-            }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
-            {
-                _decoyTowers[_activeDecoyIndex].SetActive(false);
-                if (onPlacingTowersFinished != null)
-                {
-                    onPlacingTowersFinished();
-                }
-                if (onCancelTowers != null)
-                {
-                    onCancelTowers();
-                }
-            }
-
-
-            if (_canPlaceTower == false)
-            {
-                TowerUnderMouseMovement();
+                _decoyTowers[1].SetActive(false);
             }
         }
 
@@ -200,13 +220,13 @@ namespace Scripts.Managers
                 if (OnUpgradingGatlingGun() == "Gatling_Gun(Clone)")
                 {
                     TowerPositionController spot = onGetActiveSpot();
-                     _upgradedTower = Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
+                    _upgradedTower = Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
                     Debug.Log("UPDATING THE GATLING GUN");
                     if (onUpgradeComplete != null)
                     {
                         onUpgradeComplete(spot, _upgradedTower);
                     }
-                    
+
                 }
             }
             if (OnUpgradingMissile != null)

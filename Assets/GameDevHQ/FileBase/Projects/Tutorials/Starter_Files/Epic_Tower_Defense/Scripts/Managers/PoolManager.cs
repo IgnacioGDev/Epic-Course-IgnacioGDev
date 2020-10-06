@@ -43,26 +43,26 @@ namespace Scripts.Managers
             GenerateEnemies();
         }
 
-        private void  GenerateEnemies()
+        private void GenerateEnemies()
         {
 
-                foreach (Wave wave in _waveList)
+            foreach (Wave wave in _waveList)
+            {
+                //Debug.Log("NUMBER OF WAVES: " + _waveList.Count);
+                //create a container for each wave right here
+                var nextWave = new GameObject("Wave: " + wave.waveID);
+                nextWave.transform.parent = _enemyContainer.transform;
+
+                foreach (GameObject enemy in wave.enemies)
                 {
-                    //Debug.Log("NUMBER OF WAVES: " + _waveList.Count);
-                    //create a container for each wave right here
-                    var nextWave = new GameObject("Wave: " + wave.waveID);
-                    nextWave.transform.parent = _enemyContainer.transform;
-                    
-                    foreach (GameObject enemy in wave.enemies)
-                    {
-                        _enemy = Instantiate(enemy, SpawnManager_ScriptableObjects.Instance.GetStartPos(), SpawnManager_ScriptableObjects.Instance.InitRotation());
+                    _enemy = Instantiate(enemy, SpawnManager_ScriptableObjects.Instance.GetStartPos(), SpawnManager_ScriptableObjects.Instance.InitRotation());
 
-                        //setting the enemy prefab parent in hierarchy
-                        _enemy.transform.parent = nextWave.transform; //
-                        _enemy.SetActive(false);
+                    //setting the enemy prefab parent in hierarchy
+                    _enemy.transform.parent = nextWave.transform; //
+                    _enemy.SetActive(false);
 
-                    }
                 }
+            }
         }
 
         //Ask why we are expecting to return a GameObject in this method
@@ -105,12 +105,17 @@ namespace Scripts.Managers
             }
             else
                 return 200;
-            
+
         }
 
         public int GetCurrentWaveCount()
         {
-            return _waveList[_currentWaveIndex-1].enemies.Count;
+            return _waveList[_currentWaveIndex - 1].enemies.Count;
+        }
+
+        public int GetCurrentWaveID()
+        {
+            return _currentWaveIndex + 1;
         }
     }
 }
