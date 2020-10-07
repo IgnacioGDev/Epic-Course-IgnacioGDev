@@ -25,6 +25,9 @@ namespace Scripts.Managers
                 return _instance;
             }
         }
+
+        [SerializeField]
+        private int countdown = 10;
         [SerializeField]
         private float lives = 100f;
         [SerializeField]
@@ -45,6 +48,8 @@ namespace Scripts.Managers
 
         private void Start()
         {
+            StartCoroutine(CountdownToExtinction());
+
             _warFunds = 900;
         }
 
@@ -58,6 +63,11 @@ namespace Scripts.Managers
             _inGameFunds.text = _warFunds.ToString();
             Debug.Log("ADD WAR FRUNDS: " + _warFunds);
             NormalizeNegativeFunds();
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                PauseGame();
+            }
         }
 
         private void NormalizeNegativeFunds()
@@ -125,6 +135,32 @@ namespace Scripts.Managers
         public float GetAmountOfLives()
         {
             return lives;
+        }
+
+        public void PauseGame()
+        {
+            Time.timeScale = 0.0f;
+        }
+
+        public void ResumeGame()
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        public void AccelerateGameSpeed()
+        {
+            Time.timeScale = 2.0f;
+        }
+
+        IEnumerator CountdownToExtinction()
+        {
+            while (countdown > 0)
+            {
+                Debug.Log(countdown);
+                yield return new WaitForSeconds(1f);
+                countdown--;
+            }
+            
         }
 
         private void OnDisable()

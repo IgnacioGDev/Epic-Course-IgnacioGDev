@@ -32,6 +32,8 @@ namespace Scripts.Managers
         [SerializeField]
         private Image _livesHubSprite;
         [SerializeField]
+        private Image _restartSceneSprite;
+        [SerializeField]
         private int _towerSelected = 0;
         [SerializeField]
         private GameObject _gatlingGunUpgradeSprite;
@@ -119,6 +121,7 @@ namespace Scripts.Managers
                 _armorySprite.GetComponent<Image>().sprite = _uiSprites[0];
                 _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[8];
                 _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[2];
+                _restartSceneSprite.GetComponent<Image>().sprite = _uiSprites[10];
 
                 _statusText.text = "Fair";
             }
@@ -128,6 +131,7 @@ namespace Scripts.Managers
                 _armorySprite.GetComponent<Image>().sprite = _uiSprites[1];
                 _warfundsSprite.GetComponent<Image>().sprite = _uiSprites[9];
                 _livesHubSprite.GetComponent<Image>().sprite = _uiSprites[3];
+                _restartSceneSprite.GetComponent<Image>().sprite = _uiSprites[11];
 
                 _statusText.text = "Warning";
             }
@@ -172,6 +176,12 @@ namespace Scripts.Managers
             }
             
         }
+
+        //public void OnPlaybackButtonClicked(Image pause, Image play, Image fastForward)
+        //{
+        //    if(pause)
+        //}
+
     }
 }
 
