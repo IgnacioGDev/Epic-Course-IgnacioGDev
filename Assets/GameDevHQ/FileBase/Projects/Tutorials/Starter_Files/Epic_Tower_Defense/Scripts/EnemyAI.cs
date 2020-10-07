@@ -8,6 +8,7 @@ using System;
 using GameDevHQ.FileBase.Gatling_Gun;
 using GameDevHQ.FileBase.Dual_Gatling_Gun;
 using UnityEngine.Animations;
+using UnityEngine.UI;
 
 namespace Scripts
 {
@@ -62,6 +63,11 @@ namespace Scripts
         //Dissolve Shader
         private Renderer[] _renderers;
 
+        //Variables for the healthbar
+        [SerializeField]
+        private Image _healthBar;
+        [SerializeField]
+        private float _health;
 
 
         // Start is called before the first frame update
@@ -71,6 +77,8 @@ namespace Scripts
             _renderers = GetComponentsInChildren<Renderer>();
 
             _lootMoneyToogle = true;
+
+            _health = _hitPoints;
 
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
@@ -113,12 +121,12 @@ namespace Scripts
         }
 
 
-
         private void Update()
         {
             Debugging();
             //GatlingGunFX();
             DestroyEnemy();
+            
 
         }
 
@@ -187,12 +195,20 @@ namespace Scripts
             }
         }
 
+        private void UpdateHealthBar()
+        {
+            var calc = _hitPoints / _health;
+            Debug.Log("CALC: " + calc);
+            _healthBar.fillAmount = calc;
+        }
+
         private void DestroyEnemy()
         {
             if (_isAlive == true)
             {
                 if (_hitPoints <= 0)
                 {
+                    _hitPoints = 0;
                     UpperBodyMech.OnMechDestroyed += GetHitPoints;
                     //GameManager.OnAddLootedFunds += GetMoneyLooted;
                     if (_lootMoneyToogle == true)
@@ -263,7 +279,9 @@ namespace Scripts
             {
 
                 _hitPoints -= 0.5f * Time.deltaTime;
+
             }
+            UpdateHealthBar();
 
         }
 
@@ -309,6 +327,7 @@ namespace Scripts
             }
 
         }
+
 
         private void OnDisable()
         {
