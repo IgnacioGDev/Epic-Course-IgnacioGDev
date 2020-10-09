@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+#if UNITY_EDITOR
 using UnityEditorInternal;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -20,14 +22,14 @@ namespace Scripts.Managers
             {
                 if (_instance == null)
                 {
-                    Debug.LogError("GAME MANAGER CANNOT BE EMPTY!!");
+                    //Debug.LogError("GAME MANAGER CANNOT BE EMPTY!!");
                 }
                 return _instance;
             }
         }
 
         [SerializeField]
-        private int countdown = 10;
+        private int _countdown = 3;
         [SerializeField]
         private float lives = 100f;
         [SerializeField]
@@ -39,6 +41,9 @@ namespace Scripts.Managers
         public static event Func<int> OnSellingTower;
         public static event Func<int> OnAddLootedFunds;
 
+        //OPTIMIZATION
+        private WaitForSeconds _countdownYield = new WaitForSeconds(1f); 
+
         //Singleton instantiation
         private void Awake()
         {
@@ -48,7 +53,7 @@ namespace Scripts.Managers
 
         private void Start()
         {
-            StartCoroutine(CountdownToExtinction());
+            StartCoroutine(Countdown());
 
             _warFunds = 900;
         }
@@ -61,7 +66,6 @@ namespace Scripts.Managers
         private void Update()
         {
             _inGameFunds.text = _warFunds.ToString();
-            Debug.Log("ADD WAR FRUNDS: " + _warFunds);
             NormalizeNegativeFunds();
 
             if (Input.GetKeyDown(KeyCode.T))
@@ -96,7 +100,7 @@ namespace Scripts.Managers
             }
             else
             {
-                Debug.Log("NOT ENOUGH WAR FUNDS");
+                //Debug.Log("NOT ENOUGH WAR FUNDS");
             }
 
         }
@@ -152,15 +156,17 @@ namespace Scripts.Managers
             Time.timeScale = 2.0f;
         }
 
-        IEnumerator CountdownToExtinction()
+        IEnumerator Countdown()
         {
-            while (countdown > 0)
+            while (_countdown > 0)
             {
-                Debug.Log(countdown);
-                yield return new WaitForSeconds(1f);
-                countdown--;
+                //Debug.Log(_countdown);
+                //yield return new WaitForSeconds(1f);
+                yield return _countdownYield;
+                _countdown--;
             }
-            
+            //Tell spawn manager to spawn;
+            SpawnManager_ScriptableObjects.Instance.StartSpawn();
         }
 
         private void OnDisable()

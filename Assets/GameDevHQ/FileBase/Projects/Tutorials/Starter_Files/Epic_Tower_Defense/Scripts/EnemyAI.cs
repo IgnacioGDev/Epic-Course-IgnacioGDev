@@ -69,6 +69,9 @@ namespace Scripts
         [SerializeField]
         private float _health;
 
+        //OPTIMIZATION
+        private WaitForSeconds _deathEffectDelayYield = new WaitForSeconds(2f);
+        private WaitForSeconds _disableEnemyYield = new WaitForSeconds(5f);
 
         // Start is called before the first frame update
         void OnEnable()
@@ -198,7 +201,6 @@ namespace Scripts
         private void UpdateHealthBar()
         {
             var calc = _hitPoints / _health;
-            Debug.Log("CALC: " + calc);
             _healthBar.fillAmount = calc;
         }
 
@@ -264,7 +266,8 @@ namespace Scripts
 
         IEnumerator DeathEffectDelay()
         {
-            yield return new WaitForSeconds(2f);
+            //yield return new WaitForSeconds(2f);
+            yield return _deathEffectDelayYield;
             StartCoroutine(DissolveEffect());
         }
 
@@ -292,7 +295,8 @@ namespace Scripts
 
         IEnumerator DisableEnemy()
         {
-            yield return new WaitForSeconds(5f);
+            //yield return new WaitForSeconds(5f);
+            yield return _disableEnemyYield;
             this.gameObject.SetActive(false);
         }
 

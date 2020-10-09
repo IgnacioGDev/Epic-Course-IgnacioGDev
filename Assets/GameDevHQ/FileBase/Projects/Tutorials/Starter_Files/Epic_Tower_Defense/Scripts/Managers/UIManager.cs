@@ -15,7 +15,7 @@ namespace Scripts.Managers
             {
                 if (_instance == null)
                 {
-                    Debug.LogError("UIManager can't be NULL");
+                   // Debug.LogError("UIManager can't be NULL");
                 }
                 return _instance;
             }

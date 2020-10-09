@@ -16,7 +16,6 @@ public class UIButtons : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("BUTTON PRESSED" + gameObject.name);
         _button.enabled = true;
     }
 

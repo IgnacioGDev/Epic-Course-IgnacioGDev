@@ -43,12 +43,12 @@ namespace Scripts
 
             if (SpawnManager_ScriptableObjects.Instance.GetCurrentEnemiesCount() >= PoolManager.Instance.GetCurrentWaveCount())
             {
-                Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
+                //Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
                 SpawnManager_ScriptableObjects.Instance.StartNextWave();
             }
             else
             {
-                Debug.Log("WAVE YET TO BE FNISHED");
+                //Debug.Log("WAVE YET TO BE FNISHED");
             }
 
         }
@@ -61,12 +61,12 @@ namespace Scripts
                 {
                     onWaveDestroyed();
                 }
-                Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
+                //Debug.Log("WAVE FINISHED, INITIATING NEXT WAVE");
                 SpawnManager_ScriptableObjects.Instance.StartNextWave();
             }
             else
             {
-                Debug.Log("WAVE YET TO BE FNISHED");
+                //Debug.Log("WAVE YET TO BE FNISHED");
             }
         }
     }

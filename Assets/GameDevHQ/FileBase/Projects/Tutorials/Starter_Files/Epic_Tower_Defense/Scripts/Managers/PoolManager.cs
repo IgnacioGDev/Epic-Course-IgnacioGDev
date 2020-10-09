@@ -16,7 +16,7 @@ namespace Scripts.Managers
             {
                 if (_instance == null)
                 {
-                    Debug.LogError("The Pool Manager is NULL");
+                    //Debug.LogError("The Pool Manager is NULL");
                 }
                 return _instance;
             }

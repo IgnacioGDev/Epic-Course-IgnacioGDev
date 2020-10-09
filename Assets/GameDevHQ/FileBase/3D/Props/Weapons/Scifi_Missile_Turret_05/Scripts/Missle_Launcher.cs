@@ -37,6 +37,16 @@ namespace GameDevHQ.FileBase.Missle_Launcher_Dual_Turret
 
         public static Func<bool> ReturnEnemyStatus;
 
+        //OPTIMIZATION
+        private WaitForSeconds _fireDelayYield;
+        private WaitForSeconds _reloadTimeYield;
+
+        private void Start()
+        {
+            _fireDelayYield = new WaitForSeconds(_fireDelay);
+            _reloadTimeYield = new WaitForSeconds(_reloadTime);
+        }
+
         private void Update()
         {
             Attack();
@@ -87,12 +97,14 @@ namespace GameDevHQ.FileBase.Missle_Launcher_Dual_Turret
                 _misslePositionsLeft[i].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
                 _misslePositionsRight[i].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
 
-                yield return new WaitForSeconds(_fireDelay); //wait for the firedelay
+                //yield return new WaitForSeconds(_fireDelay); //wait for the firedelay
+                yield return _fireDelayYield;
             }
 
             for (int i = 0; i < _misslePositionsLeft.Length; i++) //itterate through missle positions
             {
-                yield return new WaitForSeconds(_reloadTime); //wait for reload time
+                //yield return new WaitForSeconds(_reloadTime); //wait for reload time
+                yield return _reloadTimeYield;
                 _misslePositionsLeft[i].SetActive(true); //enable fake rocket to show ready to fire
                 _misslePositionsRight[i].SetActive(true); //enable fake rocket to show ready to fire
             }

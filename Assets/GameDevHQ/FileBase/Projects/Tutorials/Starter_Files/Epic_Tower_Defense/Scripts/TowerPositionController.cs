@@ -166,7 +166,7 @@ namespace Scripts
             }
             else
             {
-                Debug.Log("GetCurrentTower is not returning anything");
+                //Debug.Log("GetCurrentTower is not returning anything");
                 return null;
             }
         }
@@ -180,7 +180,7 @@ namespace Scripts
             }
             else
             {
-                Debug.Log("GetCurrentTowerPos is not returning anything");
+                //Debug.Log("GetCurrentTowerPos is not returning anything");
                 return Vector3.zero;
             }
         }

@@ -16,7 +16,10 @@ namespace Scripts.Managers
             get
             {
                 if (_instance == null)
-                    Debug.LogError("SpawnManager_scriptableObjects is NULL");
+                {
+                    //Debug.LogError("SpawnManager_scriptableObjects is NULL");
+                }
+                    
 
                 return _instance;
             }
@@ -30,8 +33,14 @@ namespace Scripts.Managers
         private bool _isOnWave;
         [SerializeField]
         private int _delayBetweenWaves;
+        private int _currentWave;
+        private int _delaySpawnSequence;
 
+        //OPTIMIZATION
+        private WaitForSeconds _delayBetweenWavesYield;
+        private WaitForSeconds _delaySpawnSequenceYield;
 
+ 
         private void Awake()
         {
             _instance = this;
@@ -39,9 +48,16 @@ namespace Scripts.Managers
             
         }
 
-        private int _currentWave;
+        
 
         private void Start()
+        {
+            _delaySpawnSequence = PoolManager.Instance.ReturnCurrentWaveDelay();
+            _delayBetweenWavesYield = new WaitForSeconds(_delayBetweenWaves);
+            _delaySpawnSequenceYield = new WaitForSeconds(_delaySpawnSequence);
+        }
+
+        public void StartSpawn()
         {
             StartCoroutine(SpawnSequence());
         }
@@ -50,23 +66,25 @@ namespace Scripts.Managers
         {
             while (true)
             {
-                var delay = PoolManager.Instance.ReturnCurrentWaveDelay();
-                if (delay == 200)
+                //var delay = PoolManager.Instance.ReturnCurrentWaveDelay();
+                if (_delaySpawnSequence == 200)
                 {
-                    Debug.Log("GAME COMPLETE");
+                    //Debug.Log("GAME COMPLETE");
                     //GAME COMPLETE
                     break;
                 }
 
                 if (_isOnWave == false)
                 {
-                    yield return new WaitForSeconds(_delayBetweenWaves);
+                    //yield return new WaitForSeconds(_delayBetweenWaves);
+                    yield return _delayBetweenWavesYield;
                     //Debug.Log("IsOnWave is: " + isOnWave);
                     _isOnWave = true;
                 }
                 else
                 {
-                    yield return new WaitForSeconds(delay);
+                    //yield return new WaitForSeconds(delay);
+                    yield return _delaySpawnSequenceYield;
                     //Debug.Log("IsOnWave is: " + isOnWave);
                 }
                 
@@ -117,7 +135,7 @@ namespace Scripts.Managers
         public void AmountOfEnemiesDestroyed()
         {
             _enemyCounter++;
-            Debug.Log("AMOUNT OF ENEMIES OF ACTUAL WAVE: " + _enemyCounter);
+            //Debug.Log("AMOUNT OF ENEMIES OF ACTUAL WAVE: " + _enemyCounter);
         }
     }
 }

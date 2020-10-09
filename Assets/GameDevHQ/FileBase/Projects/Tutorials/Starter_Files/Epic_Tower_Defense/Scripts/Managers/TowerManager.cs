@@ -2,8 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using UnityEditor.PackageManager;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditorInternal;
+#endif
+#if UNITY_EDITOR
+using UnityEditor.PackageManager;
+#endif
+
+
 
 namespace Scripts.Managers
 {
@@ -17,7 +24,7 @@ namespace Scripts.Managers
             {
                 if (_instance == null)
                 {
-                    Debug.LogError("TowerPlacementController is NULL");
+                    //Debug.LogError("TowerPlacementController is NULL");
                 }
                 return _instance;
             }
@@ -221,7 +228,7 @@ namespace Scripts.Managers
                 {
                     TowerPositionController spot = onGetActiveSpot();
                     _upgradedTower = Instantiate(_gatlingGunUpgrade, OnGettingTowerPosition(), Quaternion.identity);
-                    Debug.Log("UPDATING THE GATLING GUN");
+                    //Debug.Log("UPDATING THE GATLING GUN");
                     if (onUpgradeComplete != null)
                     {
                         onUpgradeComplete(spot, _upgradedTower);
@@ -234,7 +241,7 @@ namespace Scripts.Managers
                 if (OnUpgradingMissile() == "Missile_Launcher_Turret(Clone)")
                 {
                     _upgradedTower = Instantiate(_missileUpgrade, OnGettingTowerPosition(), Quaternion.identity);
-                    Debug.Log("UPDATING THE MISSILE LAUNCHER");
+                    //Debug.Log("UPDATING THE MISSILE LAUNCHER");
                 }
             }
         }

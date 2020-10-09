@@ -28,17 +28,22 @@ namespace GameDevHQ.FileBase.Missle_Launcher_Dual_Turret.Missle
         private bool _fuseOut = false; //bool for if the rocket fuse
         private bool _trackRotation = false; //bool to track rotation of the rocket
 
+        //OPTIMIZATION
+        private WaitForSeconds _fuseDelayYield;
+
 
         // Use this for initialization
         IEnumerator Start()
         {
+            _fuseDelayYield = new WaitForSeconds(_fuseDelay);
             _rigidbody = GetComponent<Rigidbody>(); //assign the rigidbody component 
             _audioSource = GetComponent<AudioSource>(); //assign the audiosource component
             _audioSource.pitch = Random.Range(0.7f, 1.9f); //randomize the pitch of the rocket audio
             _particle.Play(); //play the particles of the rocket
             _audioSource.Play(); //play the rocket sound
 
-            yield return new WaitForSeconds(_fuseDelay); //wait for the fuse delay
+            //yield return new WaitForSeconds(_fuseDelay); //wait for the fuse delay
+            yield return _fuseDelayYield;
 
             _initialLaunchTime = Time.time + 1.0f; //set the initial launch time
             _fuseOut = true; //set fuseOut to true

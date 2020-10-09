@@ -55,6 +55,8 @@ namespace Scripts
 
                 if (_enemiesInQueue.Count > 0)
                 {
+                    //Added from last meeting with Jon
+                    _isEnemyInRange = true;
                     _enemyPos = _enemiesInQueue[_queueIndex].transform.position;
 
                     if (onGatlingGunDamage != null)
