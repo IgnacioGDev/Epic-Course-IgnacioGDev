@@ -131,6 +131,11 @@ namespace Scripts.Managers
             _warFunds += loot;
         }
 
+        public void SetWarFundsDebug(int debugMoney)
+        {
+            _warFunds = debugMoney;
+        }
+
         public void LifeIndicator()
         {
             lives = lives - 5;
@@ -156,7 +161,7 @@ namespace Scripts.Managers
             Time.timeScale = 2.0f;
         }
 
-        IEnumerator Countdown()
+        public IEnumerator Countdown()
         {
             while (_countdown > 0)
             {
