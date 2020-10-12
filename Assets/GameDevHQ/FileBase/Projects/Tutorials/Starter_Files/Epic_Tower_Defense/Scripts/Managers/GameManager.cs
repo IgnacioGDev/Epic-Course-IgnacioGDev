@@ -31,7 +31,7 @@ namespace Scripts.Managers
         [SerializeField]
         private int _countdown = 3;
         [SerializeField]
-        private float lives = 100f;
+        private float _lives = 100f;
         [SerializeField]
         private Transform _endZoneTrigger;
         [SerializeField]
@@ -136,14 +136,19 @@ namespace Scripts.Managers
             _warFunds = debugMoney;
         }
 
+        public void SetLivesDebug(int debugLives)
+        {
+            _lives = debugLives;
+        }
+
         public void LifeIndicator()
         {
-            lives = lives - 5;
+            _lives = _lives - 5;
         }
 
         public float GetAmountOfLives()
         {
-            return lives;
+            return _lives;
         }
 
         public void PauseGame()

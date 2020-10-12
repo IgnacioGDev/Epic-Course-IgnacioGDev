@@ -51,6 +51,8 @@ namespace Scripts
         //Receiving Damage
         [SerializeField]
         private BoxCollider _boxCollider;
+        [SerializeField]
+        private GameObject _fakeCollider;
 
         public static event Action<GameObject> onDeath;
         public static event Action onCheckingEnemiesDestroyed;
@@ -83,12 +85,14 @@ namespace Scripts
 
             _health = _hitPoints;
 
+            ToolEditorWindow.actionTest += SetFakeColliderAvailable;
             Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             Dual_Gatling_Gun.ReturnEnemyStatus = IsEnemyActive;
             GameDevHQ.FileBase.Missle_Launcher_Dual_Turret.Missle_Launcher.ReturnEnemyStatus = IsEnemyActive;
             AttackRadius.onGatlingGunDamage += GatlingGunDamage;
 
+            SetFakeColliderSize();
 
 
 
@@ -357,6 +361,25 @@ namespace Scripts
             }
         }
 
+        private void SetFakeColliderSize()
+        {
+            _fakeCollider.transform.localScale = _boxCollider.size;
+            _fakeCollider.SetActive(false);
+        }
+
+        public void SetFakeColliderAvailable(bool buttonEnable, bool buttonDisable)
+        {
+            if (buttonEnable)
+            {
+                _fakeCollider.SetActive(true);
+                Debug.Log("SI!!!");
+            }
+            else if (buttonDisable)
+            {
+                _fakeCollider.SetActive(false);
+                Debug.Log("NO!!!");
+            }
+        }
     }
 }
 

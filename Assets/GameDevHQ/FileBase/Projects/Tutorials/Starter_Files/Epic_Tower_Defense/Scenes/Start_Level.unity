@@ -14330,8 +14330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9313310b71854e4282a7318542e9673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: 10
-  lives: 100
+  _countdown: 3
+  _lives: 100
   _endZoneTrigger: {fileID: 757453979}
   _inGameFunds: {fileID: 2109062355}
 --- !u!4 &1708022563
